@@ -1,0 +1,57 @@
+﻿@model CRS.Web.ViewModels.Account.UpdateUserProfileViewModel
+@using CRS.Web.Framework.Security;
+@using CRS.Common;
+<div class="profile-padd user-friend">
+    <h2 class="title">
+        Thống kê cá nhân</h2>
+    <table id="user-profile">
+        <tr>
+            <th scope="col">
+                Nội dung đã đóng góp
+            </th>
+            <th scope="col">
+                Số lượng
+            </th>
+        </tr>
+        <tr>
+            <td>
+                Tin tức
+            </td>
+            <td>
+                @Model.User.NumberOfNews
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Công thức nấu ăn
+            </td>
+            <td>
+                @Model.User.NumberOfRecipes
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Mẹo vặt
+            </td>
+            <td>
+                @Model.User.NumberOfTips
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Câu hỏi
+            </td>
+            <td>
+                @Model.User.NumberOfQuestions
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Câu trả lời
+            </td>
+            <td>
+                @Model.User.NumberOfAnswers
+            </td>
+        </tr>
+    </table>
+</div>

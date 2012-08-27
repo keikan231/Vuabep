@@ -1,0 +1,35 @@
+﻿@model CRS.Web.ViewModels.Account.UserQuestionViewModel
+@using CRS.Web.Models
+@if (Model != null)
+{
+    <div class="profile-padd user-friend">
+        @if (Model.Questions.Count == 0)
+        {
+            <h2 class="title">
+                Chưa đóng góp câu hỏi nào
+            </h2>
+        }
+        else
+        {
+            <h2 class="title">
+                Đã đóng góp @Model.Total câu hỏi
+            </h2>
+            <ul class="recipe-list handbook">
+                @foreach (var item in Model.Questions)
+                {    
+                    <li class="@(Model.Questions.Count - 1 == Model.Questions.IndexOf(item) ? "last" : "")">
+                        <div class="answericon">
+                            <a href="@Url.QuestionLink(item.Id, item.TitleUrl)"><span class="count">@(item.AnswerTimes > 1000 ? ">1k" : item.AnswerTimes.ToString())</span>
+                                <span>Trả lời</span> </a>
+                        </div>
+                        <div class="recipe-summary">
+                            <h2 property="dc:title" datatype="">
+                                @Html.QuestionLink(item.Id, item.Title, item.TitleUrl)</h2>
+                            <span class="meta">@item.Views lượt xem - @item.PostedDate.AgoString() </span>
+                        </div>
+                    </li>         
+                }
+            </ul>
+        }
+    </div>
+}

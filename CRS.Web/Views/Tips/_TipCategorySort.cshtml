@@ -1,0 +1,50 @@
+﻿@using CRS.Business.Models
+<ul class="section-nav">
+    @if (Model.OrderBy == Order.Recent)
+    {
+        <li class="current">
+            @Html.TipCategoryLink("Mới nhất", (int)Model.TipCategoryId, (string)Model.TipCategoryName, "recent", new { @class = "active" })
+        </li>
+    }
+    else
+    { 
+        <li>
+            @Html.TipCategoryLink("Mới nhất", (int)Model.TipCategoryId, (string)Model.TipCategoryName, "recent", new { @class = "active" })
+        </li>
+    }
+    @if (Model.OrderBy == Order.Views)
+    {
+        <li class="current">
+            @Html.TipCategoryLink("Lượt xem", (int)Model.TipCategoryId, (string)Model.TipCategoryName, "views", new { @class = "active" })
+        </li>
+    }
+    else
+    { 
+        <li>@Html.TipCategoryLink("Lượt xem", (int)Model.TipCategoryId, (string)Model.TipCategoryName, "views", new { @class = "active" })
+        </li>
+    }
+    @if (Model.OrderBy == Order.Comments)
+    {
+        <li class="current">
+            @Html.TipCategoryLink("Bình luận", (int)Model.TipCategoryId, (string)Model.TipCategoryName, "comments", new { @class = "active" })
+        </li>
+    }
+    else
+    { 
+        <li>
+            @Html.TipCategoryLink("Bình luận", (int)Model.TipCategoryId, (string)Model.TipCategoryName, "comments", new { @class = "active" })
+        </li>
+    }
+    @if (Model.OrderBy == Order.Votes)
+    {
+        <li class="current">
+            @Html.TipCategoryLink("Bình chọn", (int)Model.TipCategoryId, (string)Model.TipCategoryName, "votes", new { @class = "active" })
+        </li>
+    }
+    else
+    { 
+        <li>
+            @Html.TipCategoryLink("Bình chọn", (int)Model.TipCategoryId, (string)Model.TipCategoryName, "votes", new { @class = "active" })
+        </li>
+    }
+<ul>

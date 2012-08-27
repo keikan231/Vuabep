@@ -1,0 +1,49 @@
+﻿@using CRS.Web.Areas.Admin.Models;
+@using CRS.Web.Framework.Security;
+<div id="sidebar">
+    <div id="sidebar-wrapper">
+        <a href="@Url.Action("Index", "AdminHome")">
+            <img id="logo" src="@Url.Content("~/Content/images/main/logo-admin.png")" alt="Admin logo" /></a>
+        <div id="profile-links">
+            Hello, @Html.ActionLink(SecurityHelper.CurrentUser.UserInfo.Username.Truncate(25), "Profile", "Account", new { area = (string)null }, new { title = string.Format("{0} ({1})", SecurityHelper.CurrentUser.UserInfo.Username, SecurityHelper.CurrentUser.UserInfo.Email) })
+            <br />
+            @Html.ActionLink("View site", "Index", "Home", routeValues: new { area = (string)null }, htmlAttributes: null)
+            |
+            @Html.ActionLink("Logout", "Logout", "Account", routeValues: new { area = (string)null }, htmlAttributes: null)
+        </div>
+        <ul id="main-nav">
+            @foreach (var parent in AdminMenuCollection.Items)
+            {
+                bool shouldDisplay = parent.Children.Any(i => SecurityHelper.CurrentUser.HasPermission(i.RequiredPermission));
+                if (shouldDisplay)
+                {
+                    bool isParentSelected = parent.Name == ViewBag.MenuGroup;
+                    <li><a href="#" class="nav-top-item@(isParentSelected ? " current" : "")">
+                        @parent.Text</a>
+                        <ul>
+                            @foreach (var child in parent.Children)
+                            {
+                                if (SecurityHelper.CurrentUser.HasPermission(child.RequiredPermission))
+                                {
+                                    bool isChildSelected = isParentSelected && child.Name.Equals(ViewBag.MenuName);
+                                <li>
+                                    @{
+                                    if (isChildSelected)
+                                    {
+                                        @Html.ActionLink(child.Text, child.Action, child.Controller, routeValues: null, htmlAttributes: new { @class = "current" })
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(child.Text, child.Action, child.Controller)
+                                    }
+                                    }
+                                </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>

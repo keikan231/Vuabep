@@ -1,0 +1,109 @@
+﻿@using CRS.Web.Models
+@model CRS.Web.ViewModels.Recipes.ListRecipeViewModel
+@using CRS.Resources
+@{
+    ViewBag.Title = "Công thức nấu ăn";
+    ViewBag.MenuName = "Recipes";    
+}
+@Html.Partial("_Message")
+@Html.ValidationSummary(true, ValidationMessages.Summary)
+@if (Model != null)
+{
+    <text>
+    @section Right
+    {
+        <div id="block-b_page-taxonomy-children-list" class="block block-b-page box">
+            <h2 class="box-headline">
+                @Model.Categories[0].Item2</h2>
+            <div class="box-content">
+                <ul>
+                    @for (int i = 1; i < Model.Categories.Count; i++)
+                    {
+                        <li>@Html.RecipeSmallCategoryLink(Model.Categories[i].Item2, Model.Categories[0].Item1, Model.Categories[i].Item1, Model.Categories[i].Item2)</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+    </text>  
+    <div class="content-wrapper">
+        <ul id="breadcrum">
+            <li id="crum-home"><a href="@Url.Action("Index", "Home")">Trang chủ</a> </li>
+            <li class="current"><a href="@Url.Action("Index", "Recipes")">Công thức nấu ăn</a> </li>
+        </ul>
+    </div>
+    
+    if (Model.Recipes.Count > 0)
+    {  
+    <div class="section-headline">
+        <div class="section-headline-content">
+            <h2>
+                @Model.Categories[0].Item2
+            </h2>
+            @Html.Partial("_RecipeCategorySort")
+        </div>
+    </div>
+    <ul class="recipe-list">
+        @Html.Partial("_RecipeList", Model.Recipes)
+        @if (Model.HasMore)
+        {
+            @Html.ActionLink("xem thêm", "RecipeCategoryIndex", "Recipes", new { sort = Model.Sort, page = Model.Page + 1 }, new { @class = "more", id = "more" })
+        }
+    </ul>
+    }
+    else
+    {
+    <div class="section-headline">
+        <div class="section-headline-content">
+            <h2>
+                @Model.Categories[0].Item2
+            </h2>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <h2 class="title">
+            Không có công thức nấu ăn nào!</h2>
+    </div>
+    }
+}
+@section Script
+{
+    @if (Model != null && Model.HasMore)
+    {
+        <script type="text/javascript">
+        var isLoading = false;
+        var page = 1;
+        
+            $("#more").live('click', function (e) {
+                e.preventDefault();
+                if (isLoading)
+                    return false;
+                isLoading = true;
+                $(this).html("<img src='@Url.Content("~/Content/images/main/loading.gif")' />");
+                $.ajax( {
+                    type: "POST",
+                    url: "@Url.Action("RecipeCategoryIndexMore", "Recipes")",
+                    dataType: "html",
+                    data: {     
+                        sort: "@Model.Sort",             
+                        page: page + 1
+                    },
+                    success: function (data) {
+                        page++;
+                        // replace "more" button by new data
+                        $(".recipe-list .last").removeClass("last");
+                        $("#more").replaceWith(data);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert(xhr.statusText);
+                        alert(thrownError);
+                        $("#more").html("có lỗi xảy ra, bạn hãy đợi một chút và thử lại");
+                    },
+                    complete: function() {
+                        isLoading = false;
+                    }
+                });
+            });        
+        </script>
+    }
+}

@@ -1,0 +1,30 @@
+﻿@model IList<CRS.Business.Models.Entities.Word>
+@using CRS.Web.Models
+@using CRS.Common.Helpers
+@using CRS.Web.Helpers
+<table>
+    <tr>
+        <th scope="col">
+            Tên nguyên liệu
+        </th>
+        <th scope="col" style="width:400px">
+            Tên gọi khác
+        </th>
+        <th scope="col" style="width:50px">
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    { 
+        <tr>
+            <td style="font-weight:bold">
+                @item.Key
+            </td>
+            <td>
+                @item.Value
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Update", "Dictionary", new { area = (string)null, id = item.Id }, null)
+            </td>
+        </tr>  
+    }
+</table>

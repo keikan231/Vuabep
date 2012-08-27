@@ -1,0 +1,29 @@
+﻿@model CRS.Web.ViewModels.Questions.InsertQuestionViewModel
+@using CRS.Web.Helpers
+@using CRS.Resources
+<div class="content-wrapper">
+    @using (Html.BeginForm((Model.Question.Id == 0 ? "Create" : "Edit"), "Questions", FormMethod.Post, new { @class = "node-form node-recipe-form" }))
+    {
+        @Html.HiddenFor(m => m.Question.Id)
+        <div class="form-item form-type-textfield form-item-title">
+            @Html.LabelFor(m => m.Question.Title)
+            @Html.TextBoxFor(m => m.Question.Title, new { @id = "edit-title", @class = "wide hint form-text required", @maxlength = "255", @size = "60" })
+            @Html.ValidationMessageFor(m => m.Question.Title)
+        </div>
+        <div id="edit-field-mo-ta" class="field-type-text-long field-name-field-mo-ta field-widget-textarea-extra-count form-wrapper">
+            <div id="field-mo-ta-add-more-wrapper">
+                @Html.LabelFor(m => m.Question.ContentText)
+                <div class="form-textarea-wrapper">
+                    @Html.TextAreaFor(m => m.Question.ContentText, new { @id = "edit-field-mo-ta-und-0-value", @class = "hint wide form-textarea required", @rows = "5" })
+                    @Html.ValidationMessageFor(m => m.Question.ContentText)
+                </div>
+            </div>
+        </div>
+        <div>
+            <input class="submitbutton" type="submit" value="@(Model.Question.Id == 0 ? "Gửi" : "Lưu")" />
+            <a class="submitbutton" type="submit" href="@(Model.Question.Id == 0 ? Url.Action("Index", "Questions") : Url.QuestionLink(Model.Question.Id, Model.Question.TitleUrl))">
+                Bỏ qua</a>
+        </div>
+           
+    }
+</div>

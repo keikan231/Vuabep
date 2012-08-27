@@ -1,0 +1,57 @@
+﻿@model CRS.Web.ViewModels.Account.UserFavoriteRecipeViewModel
+@using CRS.Web.Models
+@if (Model.FavoriteRecipes.Count == 0)
+{
+    <h2 class="title">
+        Chưa thêm công thức nấu ăn nào vào sổ tay
+    </h2>
+}
+else
+{
+    <h2 class="title">
+        Đã thêm @Model.Total công thức nấu ăn vào sổ tay
+    </h2>
+    <table class="favorite-item-table">
+        <tr>
+            <th class="checkbox">
+                <input type="checkbox" id="checkboxall" />
+            </th>
+            <th class="image">
+                <div align="center">
+                    Công thức nấu ăn
+                </div>
+            </th>
+        </tr>
+        <tbody>
+            @{ int i = 0; }
+            @foreach (var item in Model.FavoriteRecipes)
+            { 
+                <tr class="@(i % 2 != 0 ? "odd" : "")" id="@item.Id">
+                    @*CheckBox*@
+                    <td class="checkbox">@Html.CheckBox(item.Id.ToString(), new { value = item.Id, @class = "checkboxfavorite" })
+                    </td>
+                    <td>
+                        @Html.RecipeImageActionLink("Recipes", @Url.ShowImage(item.ImageUrl, ImageType.Thumbnail), item.Title, item.Id, item.Title, item.TitleUrl, new { @height = "80px", @width = "80px" }, new { @class = "recipe-thumb" })
+                        <div class="recipe-summary">
+                            <h2 property="dc:title" datatype="">
+                                @Html.RecipeLink(item.Id, item.Title.Truncate(40), item.TitleUrl)</h2>
+                            <span class="meta">@item.Views lượt xem - @item.PostedDate.AgoString() </span>
+                            <p class="desc">
+                                @item.ContentText</p>
+                            <div class="recipe-rating">
+                                @{Rating r = new Rating(item.RateTimes, item.TotalRates);}
+                                Đánh giá: @Html.Partial("_Rating", r) (<span class="rate-score">@Math.Round(r.Average, 2)</span>
+                                điểm / <span class="rate-score">@r.RateTimes.ToString("n0")</span> lượt đánh giá)
+                            </div>
+                            <ul class="user-actions">
+                                <li class="user-comment" title="@(item.Comments) bình luận">@item.Comments bình luận</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+    <input class="submitbutton" type="submit" value="Xóa" disabled="disabled" id="deletebutton" />
+}

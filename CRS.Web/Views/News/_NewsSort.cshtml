@@ -1,0 +1,38 @@
+﻿@using CRS.Business.Models
+<ul class="section-nav">
+    @if (Model.OrderBy == Order.Recent)
+    {
+        <li class="current">
+            @Html.ActionLink("Mới nhất", "Index", "News", new { sort = "recent"}, new { @class = "active" })
+        </li>
+    }
+    else
+    { 
+        <li>
+            @Html.ActionLink("Mới nhất", "Index", "News", new { sort = "recent"}, new { @class = "active" })
+        </li>
+    }
+    @if (Model.OrderBy == Order.Views)
+    {
+        <li class="current">
+            @Html.ActionLink("Lượt xem", "Index", "News", new { sort = "views"}, new { @class = "active" })
+        </li>
+    }
+    else
+    { 
+        <li>@Html.ActionLink("Lượt xem", "Index", "News", new { sort = "views"}, new { @class = "active" })
+        </li>
+    }
+    @if (Model.OrderBy == Order.Comments)
+    {
+        <li class="current">
+            @Html.ActionLink("Bình luận", "Index", "News", new { sort = "comments"}, new { @class = "active" })
+        </li>
+    }
+    else
+    { 
+        <li>
+            @Html.ActionLink("Bình luận", "Index", "News", new { sort = "comments"}, new { @class = "active" })
+        </li>
+    }
+</ul>

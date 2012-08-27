@@ -1,0 +1,28 @@
+﻿@model CRS.Web.ViewModels.Search.SearchResultViewModel
+@{
+    Layout = null;
+}
+@if (!Model.NotFound)
+{
+    if (Model.Input.CategoryName == "news")
+    {
+        @Html.Partial("_NewsListShared", Model.News)
+    }
+    else if (Model.Input.CategoryName == "tips")
+    {
+        @Html.Partial("_TipListShared", Model.Tips)
+    }
+     else if (Model.Input.CategoryName == "recipes")
+    {
+        @Html.Partial("_RecipeListShared", Model.Recipes)
+    }
+    else if (Model.Input.CategoryName == "all")
+    {
+        @Html.Partial("_AllContentListShared", Model.All)
+    }
+
+    if (Model.HasMore)
+    { 
+        @Html.ActionLink("xem thêm", "Result", "Search", new { nameUrl = Model.Input.NameUrl, page = (Model.Input.Page ?? 1) + 1, sort = Model.Input.Sort, categoryName = Model.Input.CategoryName }, new { @class = "more", id = "more" })
+    }
+}

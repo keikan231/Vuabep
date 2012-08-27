@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRS.Common", "CRS.Common\CRS.Common.csproj", "{423E230E-769C-4219-BFA2-BF9ED1483251}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRS.Common.Tests", "CRS.Common.Tests\CRS.Common.Tests.csproj", "{B2A21CDE-2348-42BD-902C-C316EE365384}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRS.Business", "CRS.Business\CRS.Business.csproj", "{282B460F-95E5-4173-818E-85A75B0816D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRS.Business.Tests", "CRS.Business.Tests\CRS.Business.Tests.csproj", "{28C3A749-42BE-41A8-A570-1E580E5BCAC6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{15B983D2-548A-454F-ACB3-723D59EBEC01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRS.Resources", "CRS.Resources\CRS.Resources.csproj", "{C973DA0D-06FD-4F80-B29F-80E0582A1DDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRS.Web", "CRS.Web\CRS.Web.csproj", "{2D6FC19C-7B62-4275-9DB6-F45BE0F46374}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRS.Web.Tests", "CRS.Web.Tests\CRS.Web.Tests.csproj", "{E62443A4-B0D9-4E5E-9885-1DD4E8E516D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{423E230E-769C-4219-BFA2-BF9ED1483251}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{423E230E-769C-4219-BFA2-BF9ED1483251}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{423E230E-769C-4219-BFA2-BF9ED1483251}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{423E230E-769C-4219-BFA2-BF9ED1483251}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2A21CDE-2348-42BD-902C-C316EE365384}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2A21CDE-2348-42BD-902C-C316EE365384}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2A21CDE-2348-42BD-902C-C316EE365384}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2A21CDE-2348-42BD-902C-C316EE365384}.Release|Any CPU.Build.0 = Release|Any CPU
+		{282B460F-95E5-4173-818E-85A75B0816D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{282B460F-95E5-4173-818E-85A75B0816D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{282B460F-95E5-4173-818E-85A75B0816D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{282B460F-95E5-4173-818E-85A75B0816D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28C3A749-42BE-41A8-A570-1E580E5BCAC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28C3A749-42BE-41A8-A570-1E580E5BCAC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28C3A749-42BE-41A8-A570-1E580E5BCAC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28C3A749-42BE-41A8-A570-1E580E5BCAC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C973DA0D-06FD-4F80-B29F-80E0582A1DDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C973DA0D-06FD-4F80-B29F-80E0582A1DDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C973DA0D-06FD-4F80-B29F-80E0582A1DDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C973DA0D-06FD-4F80-B29F-80E0582A1DDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D6FC19C-7B62-4275-9DB6-F45BE0F46374}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D6FC19C-7B62-4275-9DB6-F45BE0F46374}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D6FC19C-7B62-4275-9DB6-F45BE0F46374}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D6FC19C-7B62-4275-9DB6-F45BE0F46374}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E62443A4-B0D9-4E5E-9885-1DD4E8E516D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E62443A4-B0D9-4E5E-9885-1DD4E8E516D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E62443A4-B0D9-4E5E-9885-1DD4E8E516D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E62443A4-B0D9-4E5E-9885-1DD4E8E516D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{28C3A749-42BE-41A8-A570-1E580E5BCAC6} = {15B983D2-548A-454F-ACB3-723D59EBEC01}
+		{B2A21CDE-2348-42BD-902C-C316EE365384} = {15B983D2-548A-454F-ACB3-723D59EBEC01}
+		{E62443A4-B0D9-4E5E-9885-1DD4E8E516D7} = {15B983D2-548A-454F-ACB3-723D59EBEC01}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35;packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Logging.5.0.505.1\lib\NET35
+	EndGlobalSection
+EndGlobal

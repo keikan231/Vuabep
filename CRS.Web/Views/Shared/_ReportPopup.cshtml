@@ -1,0 +1,28 @@
+﻿<div id="reportdialog" class="window">
+    <div class="editor">
+        <div class="editor-label">
+            <ul class="tips">
+                <li>Bạn có thể nhập lý do vi phạm để giúp ban quản trị xử lý nhanh chóng và dễ dàng hơn.</li>
+            </ul>
+        </div>
+        <textarea id="reporttextarea" class="textareafull"></textarea>        
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#reportdialog").dialog({
+            autoOpen: false,
+            resizable: false,
+            width: 550,
+            modal: true,
+            show: "fade",
+            hide: "fade",
+            buttons: {
+                "Bỏ qua": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+    });
+</script>

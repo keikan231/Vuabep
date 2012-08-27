@@ -1,0 +1,40 @@
+﻿@model CRS.Web.ViewModels.Words.InsertWordViewModel
+@using CRS.Resources
+@using CRS.Web.Helpers
+@using CRS.Common
+<div class="content-wrapper">
+    @using (Html.BeginForm((Model.Word.Id == 0 ? "Create" : "Update"), "Dictionary", FormMethod.Post, new { @class = "node-form node-recipe-form" }))
+    {
+        @Html.HiddenFor(m => m.Word.Id)
+        <div class="form-item form-type-textfield form-item-title">
+            @Html.LabelFor(m => m.Word.Key)
+            @if (Model.Word.Id == 0)
+            {
+                @Html.TextBoxFor(m => m.Word.Key, new { @id = "edit-title", @class = "wide hint form-text required", @maxlength = "255", @size = "60" })
+                @Html.ValidationMessageFor(m => m.Word.Key)
+            }
+            else
+            {
+                @Html.HiddenFor(m => m.Word.Id)
+                @Html.HiddenFor(m => m.OldValue)
+                @Html.HiddenFor(m => m.Word.Key)
+                <div>@Model.Word.Key</div>
+            }
+        </div>      
+            
+        <div id="edit-field-mo-ta" class="field-type-text-long field-name-field-mo-ta field-widget-textarea-extra-count form-wrapper">
+            <div id="field-mo-ta-add-more-wrapper">
+                @Html.LabelFor(m => m.Word.Value)
+                <div class="form-textarea-wrapper">
+                    @Html.TextAreaFor(m => m.Word.Value, new { @id = "edit-field-mo-ta-und-0-value", @class = "hint wide form-textarea required", @rows = "3" })
+                    @Html.ValidationMessageFor(m => m.Word.Value)
+                </div>
+            </div>
+        </div>                
+        <div>
+            <input class="submitbutton" type="submit" value="@(Model.Word.Id == 0 ? "Gửi" : "Lưu")" />
+            <a class="submitbutton" type="submit" href="@Url.Action("Index", "Dictionary")">Bỏ qua</a>
+        </div>
+           
+    }
+</div>

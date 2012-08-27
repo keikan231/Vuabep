@@ -1,0 +1,59 @@
+﻿@model IList<Tuple<string, CRS.Business.Models.Entities.News>>
+@using CRS.Web.Models
+@using CRS.Web.Helpers
+@using CRS.Common.Helpers
+@foreach (var item in Model)
+{    
+    <li class="@(Model.Count - 1 == Model.IndexOf(item) ? "last" : "")">
+        @if (item.Item1 == "news")
+        {
+            @Html.NewsImageActionLink("News", @Url.ShowImage(item.Item2.ImageUrl, ImageType.Thumbnail), item.Item2.Title, item.Item2.Id, item.Item2.Title, item.Item2.TitleUrl, new { @height = "120px", @width = "120px" }, new { @class = "recipe-thumb" })
+        }
+        else if (item.Item1 == "tips")
+        {
+            @Html.TipImageActionLink("Tips", @Url.ShowImage(item.Item2.ImageUrl, ImageType.Thumbnail), item.Item2.Title, item.Item2.Id, item.Item2.Title, item.Item2.TitleUrl, new { @height = "120px", @width = "120px" }, new { @class = "recipe-thumb" })
+        }
+         else if (item.Item1 == "recipes")
+        {
+            @Html.RecipeImageActionLink("Recipes", @Url.ShowImage(item.Item2.ImageUrl, ImageType.Thumbnail), item.Item2.Title, item.Item2.Id, item.Item2.Title, item.Item2.TitleUrl, new { @height = "120px", @width = "120px" }, new { @class = "recipe-thumb" })
+        }
+        <div class="recipe-summary">
+            <h2 property="dc:title" datatype="">
+                @if (item.Item1 == "news")
+                {
+                    @Html.NewsLink(item.Item2.Id, item.Item2.Title, item.Item2.TitleUrl)
+                }
+                else if (item.Item1 == "tips")
+                {
+                    @Html.TipLink(item.Item2.Id, item.Item2.Title, item.Item2.TitleUrl)
+                }
+                else if (item.Item1 == "recipes")
+                {
+                    @Html.RecipeLink(item.Item2.Id, item.Item2.Title, item.Item2.TitleUrl)
+                }
+            </h2>
+            <span class="meta"><span>@Html.UserLink(item.Item2.PostedBy.Id, item.Item2.PostedBy.Username, new { @class = "username" })
+            </span>- @item.Item2.Views lượt xem - @item.Item2.PostedDate.AgoString() </span>
+            <p class="desc">
+                @item.Item2.ContentText</p>
+            <ul class="user-actions">
+                <li class="user-comment" title="@(item.Item2.Comments) bình luận">@item.Item2.Comments bình luận</li>
+                <!--begin social-->
+                <li class="user-share"><a id="various" href="#inline1">Chia sẻ</a></li>
+                <div style="display: none;">
+                    <div id="inline1">
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/social-facebook-box-blue-icon.png")" border="0px" /></a>&nbsp;
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/social-google-box-blue-icon.png")" border="0px" /></a>&nbsp;
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/Tumblr-icon.png")" border="0px" /></a> &nbsp;
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/Google-Plus-13-icon.png")" border="0px" /></a>
+                    </div>
+                </div>
+                <!--end social-->
+            </ul>
+        </div>
+    </li>       
+}

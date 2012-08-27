@@ -1,0 +1,52 @@
+﻿@model CRS.Web.ViewModels.Account.LoginViewModel
+@using CRS.Resources
+@{
+    ViewBag.Title = "Login";
+}
+@Html.ValidationSummary(true, ValidationMessages.Summary)
+<div class="content-wrapper">
+    <h1 class="title">
+        Đăng nhập</h1>
+    <div class="boxfullcontent">
+        <p>
+            Nếu bạn chưa có tài khoản, hãy @Html.ActionLink("đăng ký", "Register", "Account", null, null)
+            tại đây.</p>
+        <div class="form-item form-type-textfield form-item-name">
+            @using (Html.BeginForm())
+            { 
+                <fieldset>
+                    <div class="editor login-input">
+                        @*Email*@
+                        <div class="editor-label required">
+                            @Html.LabelFor(m => m.Username)
+                        </div>
+                        @Html.TextBoxFor(m => m.Username, new { @maxlength = "30", @size = "30" })
+                        @Html.ValidationMessageFor(m => m.Username)
+                        @*Password*@
+                        <div class="editor-label required">
+                            @Html.LabelFor(m => m.Password)
+                        </div>
+                        @Html.PasswordFor(m => m.Password, new { @maxlength = "30", @size = "30" })
+                        @Html.ValidationMessageFor(m => m.Password)
+                    </div>
+                    @*RememberMe*@
+                    <div class="checkbox-label">
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                        @Html.LabelFor(m => m.RememberMe)
+                    </div>
+                    <div id="edit-actions" class="form-actions form-wrapper">
+                        <input id="edit-submit" class="form-submit" type="submit" value="Đăng nhập" name="op">
+                        @Html.ActionLink("Quên mật khẩu", "RequestResetPassword", "Account", null, null)
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </div>
+</div>
+@*TODO - KIENTT - Check later
+@section Script
+{
+    <script type="text/javascript">
+        initLogin();
+    </script>
+}*@ 

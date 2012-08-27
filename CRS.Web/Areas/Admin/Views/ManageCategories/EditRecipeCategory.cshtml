@@ -1,0 +1,8 @@
+﻿@model CRS.Web.Areas.Admin.ViewModels.ManageCategories.InsertRecipeCategoryViewModel
+@{
+    ViewBag.Title = "Create a Recipe Category";
+    ViewBag.MenuGroup = "RecipeCategories";
+    ViewBag.MenuName = "CreateRecipeCategory";
+    ViewBag.PageHeader = "Create a Recipe Category";
+}
+@Html.Partial("_RecipeCategoryInputForm", Model)

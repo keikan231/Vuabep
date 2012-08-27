@@ -1,0 +1,45 @@
+﻿@{
+    Layout = null;
+}
+<script type="text/javascript" src="@Url.Content("~/Scripts/scrollable-table/scrollable-table.js")"></script>
+<link href="@Url.Content("~/Scripts/scrollable-table/scrollable-table.css")" rel="stylesheet" type="text/css" />
+@model CRS.Web.ViewModels.Words.ListWordsViewModel
+@if (Model != null)
+{
+    if (Model.Words.Count == 0)
+    {
+    <div>
+        Không có từ nào
+    </div>
+    }
+    else
+    {
+    <div id="tableContainer" class="tableContainer">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="scrollTable">
+            <thead class="fixedHeader">
+                <tr>
+                    <th scope="col">
+                        Tên
+                    </th>
+                    <th scope="col">
+                        Tên gọi khác
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="scrollContent">
+                @foreach (var item in Model.Words)
+                { 
+                    <tr>
+                        <td style="font-weight: bold">
+                            @item.Key
+                        </td>
+                        <td>
+                            @item.Value
+                        </td>
+                    </tr>  
+                }
+            </tbody>
+        </table>
+    </div>
+    }
+}

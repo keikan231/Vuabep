@@ -1,0 +1,40 @@
+﻿@model IList<CRS.Business.Models.Entities.Tip>
+@using CRS.Web.Models
+@using CRS.Web.Helpers
+@using CRS.Common.Helpers
+@foreach (var item in Model)
+{    
+    <li class="@(Model.Count - 1 == Model.IndexOf(item) ? "last" : "")">
+        @Html.TipImageActionLink("Tips", @Url.ShowImage(item.ImageUrl, ImageType.Thumbnail), item.Title, item.Id, item.Title, item.TitleUrl, new { @height = "120px", @width = "120px" }, new { @class = "recipe-thumb" })
+        <div class="recipe-summary">
+            <h2 property="dc:title" datatype="">
+                @Html.TipLink(item.Id, item.Title.Truncate(60), item.TitleUrl)</h2>
+            <span class="meta"><span>@Html.UserLink(item.PostedBy.Id, item.PostedBy.Username, new { @class = "username" })
+            </span>- @item.Views lượt xem - @item.PostedDate.AgoString() </span>
+            <p class="desc">
+                @item.ContentText</p>
+            <ul class="user-actions">
+                <li class="user-like" title="@(item.UpVotes) thích"><span class="like_count like_count_11344">@item.UpVotes</span>
+                    thích </li>
+                <li class="user-unlike" title="@(item.DownVotes) không thích"><span class="like_count like_count_11344">@item.DownVotes</span>
+                    không thích </li>
+                <li class="user-comment" title="@(item.Comments) bình luận">@item.Comments bình luận</li>
+                <!--begin social-->
+                <li class="user-share"><a id="various" href="#inline1">Chia sẻ</a></li>
+                <div style="display: none;">
+                    <div id="inline1">
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/social-facebook-box-blue-icon.png")" border="0px" /></a>&nbsp;
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/social-google-box-blue-icon.png")" border="0px" /></a>&nbsp;
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/Tumblr-icon.png")" border="0px" /></a> &nbsp;
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/Google-Plus-13-icon.png")" border="0px" /></a>
+                    </div>
+                </div>
+                <!--end social-->
+            </ul>
+        </div>
+    </li>       
+}

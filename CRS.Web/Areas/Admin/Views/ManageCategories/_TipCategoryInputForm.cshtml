@@ -1,0 +1,30 @@
+﻿@model CRS.Web.Areas.Admin.ViewModels.ManageCategories.InsertTipCategoryViewModel
+@Html.ValidationSummary(true, ValidationMessages.Summary)
+<div class="content-box">
+    <div class="content-box-header">
+        <h3>
+            Tip Category information</h3>
+    </div>
+    <div class="content-box-content">
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(m => m.TipCategory.Id)
+            <div class="input">
+                <p class="required">
+                    @Html.LabelFor(m => m.TipCategory.Name)
+                    @Html.TextBoxFor(m => m.TipCategory.Name, new { @class = "text-input small-input" })
+                    @Html.ValidationMessageFor(m => m.TipCategory.Name)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.TipCategory.Description)
+                    @Html.TextBoxFor(m => m.TipCategory.Description, new { @class = "text-input small-input" })
+                    @Html.ValidationMessageFor(m => m.TipCategory.Description)
+                </p>
+                <p class="buttons">
+                    @Html.Partial("_SaveButton")
+                    @Html.Partial("_CancelButton", new CRS.Web.Models.ActionInfo("Cancel", "ManageTipCategories"))
+                </p>
+            </div>
+        }
+    </div>
+</div>

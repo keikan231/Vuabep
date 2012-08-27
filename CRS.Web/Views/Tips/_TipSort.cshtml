@@ -1,0 +1,50 @@
+﻿@using CRS.Business.Models
+<ul class="section-nav">
+    @if (Model.OrderBy == Order.Recent)
+        {
+        <li class="current">
+            @Html.ActionLink("Mới nhất", "Index", "Tips", new { sort = "recent" }, new { @class = "active" })
+        </li>
+        }
+        else
+        { 
+        <li>
+            @Html.ActionLink("Mới nhất", "Index", "Tips", new { sort = "recent" }, new { @class = "active" })
+        </li>
+        }
+    @if (Model.OrderBy == Order.Views)
+        {
+        <li class="current">
+            @Html.ActionLink("Lượt xem", "Index", "Tips", new { sort = "views" }, new { @class = "active" })
+        </li>
+        }
+        else
+        { 
+        <li>@Html.ActionLink("Lượt xem", "Index", "Tips", new { sort = "views" }, new { @class = "active" })
+        </li>
+        }
+    @if (Model.OrderBy == Order.Comments)
+        {
+        <li class="current">
+            @Html.ActionLink("Bình luận", "Index", "Tips", new { sort = "comments" }, new { @class = "active" })
+        </li>
+        }
+        else
+        { 
+        <li>
+            @Html.ActionLink("Bình luận", "Index", "Tips", new { sort = "comments" }, new { @class = "active" })
+        </li>
+        }
+    @if (Model.OrderBy == Order.Votes)
+        {
+        <li class="current">
+            @Html.ActionLink("Bình chọn", "Index", "Tips", new { sort = "votes" }, new { @class = "active" })
+        </li>
+        }
+        else
+        { 
+        <li>
+            @Html.ActionLink("Bình chọn", "Index", "Tips", new { sort = "votes" }, new { @class = "active" })
+        </li>
+        }
+    <ul>

@@ -1,0 +1,11 @@
+﻿@model CRS.Web.ViewModels.Questions.ListAnswerViewModel
+@{
+    Layout = null;
+}
+@{
+    @Html.Partial("_AnswerList", Model)
+    if (Model.HasMore)
+    {             
+        <a class="more" id="more">xem thêm</a>
+    }
+}

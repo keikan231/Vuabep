@@ -1,0 +1,13 @@
+﻿@{
+    Layout = null;
+}
+@model IList<Tip>
+@using CRS.Business.Models.Entities;
+<ul class="menunav">
+    @for (var i = 0; i < Model.Count; i++)
+    {
+        var item = Model[i];
+        <li class="@(i == Model.Count - 1 ? "last" : "")" title="@item.Title">@Html.TipLink(item.Id, item.Title.Truncate(100), item.TitleUrl) <span class="datetime">(@item.PostedDate.ShortDate()) </span>
+        </li>
+    }
+</ul>

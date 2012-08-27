@@ -1,0 +1,11 @@
+﻿@model CRS.Web.ViewModels.Tips.ListTipViewModel
+@{
+    Layout = null;
+}
+@{
+    @Html.Partial("_TipList", Model.Tips)
+    if (Model.HasMore)
+    {
+    @Html.ActionLink("Xem thêm", "TipCategoryIndex", "Tips", new { id = Model.TipCategoryId, sort = Model.Sort, page = Model.Page + 1 }, new { @class = "more", id = "more" })
+    }
+}

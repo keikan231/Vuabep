@@ -1,0 +1,3 @@
+﻿@model CRS.Web.Models.ActionInfo
+<a class="t-button t-grid-edit t-button-icontext" href="@Url.Action(@Model.Action, routeValues: new { id = Model.Id })">
+    <span class="t-icon t-edit"></span>@Model.Text</a>

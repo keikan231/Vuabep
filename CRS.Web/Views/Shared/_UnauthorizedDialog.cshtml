@@ -1,0 +1,30 @@
+﻿@*The parent view must reference jQuery UI Dialog plugin*@
+<div id="not-loggedin" class="window">
+    <p>
+        Bạn cần đăng nhập để sử dụng chức năng này.
+    </p>
+    <p>
+        Click @Html.ActionLink("vào đây", "Login", "Account", new { returnUrl = Request.Url.AbsolutePath }, null)
+        để đăng nhập.
+    </p>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#not-loggedin").dialog({
+            autoOpen: false,
+            resizable: false,
+            modal: true,
+            title: "Bạn chưa đăng nhập",
+            width: '400px',
+            buttons: {
+                OK: function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+    });
+
+    function showUnauthorizedMessage() {
+        $("#not-loggedin").dialog("open");
+    }
+</script>

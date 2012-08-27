@@ -1,0 +1,33 @@
+﻿@using CRS.Web.Models;
+@{
+    MessageType? messageType;
+    messageType = (MessageType?)TempData["MessageType"];
+    String cl = null;
+    if (messageType != null)
+    { 
+        switch (messageType)
+        {
+            case MessageType.Success:
+                cl = "success";
+                break;
+            case MessageType.Error:
+                cl = "error";
+                break;
+            case MessageType.Warning:
+                cl = "attention";
+                break;
+            case MessageType.Info:
+                cl = "information";
+                break;
+        }
+    }
+}
+@if (messageType != null)
+{ 
+    <div class="notification @cl png_bg">
+        <a class="close" href="#"></a>
+        <div>
+	        @TempData["Message"]
+        </div>
+    </div>
+}

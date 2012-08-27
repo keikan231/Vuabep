@@ -1,0 +1,19 @@
+----------------------------------------
+Timestamp: 17/08/2012 3:53:28 SA
+
+Severity: Error
+
+Message: System.Data.EntityCommandExecutionException: An error occurred while reading from the store provider's data reader. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Divide by zero error encountered.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlDataReader.HasMoreRows()
+   at System.Data.SqlClient.SqlDataReader.ReadInternal(Boolean setTimeout)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at System.Data.Common.Internal.Materialization.Shaper`1.StoreRead()
+   --- End of inner exception stack trace ---
+   at System.Data.Common.Internal.Materialization.Shaper`1.StoreRead()
+   at System.Data.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   at CRS.Business.Repositories.RecipeRepository.GetAllRecipe(SortCriteria criteria) in C:\Users\ZzKeikanzZ\Desktop\CRS - Chuan - Copy\CRS.Business\Repositories\RecipeRepository.cs:line 290
+----------------------------------------

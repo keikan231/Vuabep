@@ -1,0 +1,164 @@
+﻿.boxreport ul.liststatiticdet,
+ .comment-content ul.liststatiticdet 
+ {
+    float: right;
+    margin: 0;
+}
+
+.boxreport ul.listinfodet li, 
+.boxreport ul.liststatiticdet li,
+.comment-content ul.liststatiticdet li
+{
+	display: inline;
+	float: left;
+	height: 14px;
+	border: none;
+	font-size: 1.2em;
+	color: #727272;
+	margin: 0;
+	padding: 2px 10px 0 10px;
+}
+
+.boxreport ul.liststatiticdet li a.upvote-link,
+.boxreport ul.liststatiticdet li a.downvote-link, 
+.boxreport ul.liststatiticdet li a.selectedupvote-link,
+.boxreport ul.liststatiticdet li a.selecteddownvote-link, 
+.boxreport ul.liststatiticdet li a.report-spam, 
+.boxreport ul.liststatiticdet li a.removequestion,
+.boxreport ul.liststatiticdet li a.upvote-linkreadonly,
+.boxreport ul.liststatiticdet li a.downvote-linkreadonly,
+.comment-content ul.liststatiticdet li a.upvote-link,
+.comment-content ul.liststatiticdet li a.downvote-link, 
+.comment-content ul.liststatiticdet li a.selectedupvote-link,
+.comment-content ul.liststatiticdet li a.selecteddownvote-link, 
+.comment-content ul.liststatiticdet li a.report-spam, 
+.comment-content ul.liststatiticdet li a.removequestion,
+.comment-content ul.liststatiticdet li a.upvote-linkreadonly,
+.comment-content ul.liststatiticdet li a.downvote-linkreadonly
+{   
+    cursor:pointer;
+    display: block;
+    font-size:1px;
+    text-indent:-9999em;
+    width:18px;
+    height:18px;
+    text-decoration: none;
+}
+
+.boxreport ul.liststatiticdet li.voteupcount, 
+.boxreport ul.liststatiticdet li.votedowncount
+{
+    padding: 4px 10px 0 0;
+    font-size:16px;
+    font-weight:bold;
+}
+.boxreport ul.liststatiticdet li.voteupcount,
+.comment-content ul.liststatiticdet li.voteupcount,
+.image-wrapper ul.liststatiticdet li.voteupcount
+{
+    color:Green;
+}
+
+.boxreport ul.liststatiticdet li.votedowncount,
+.comment-content ul.liststatiticdet li.votedowncount,
+.image-wrapper ul.liststatiticdet li.votedowncount
+{ 
+    color:Red;
+}
+
+.boxreport ul.liststatiticdet li a.report-spam,
+.comment-content ul.liststatiticdet li a.report-spam,
+.image-wrapper ul.liststatiticdet li a.report-spam
+{
+    padding:0px;
+}
+
+.boxreport ul.liststatiticdet li a.removequestion { background: url(../../images/main/icon_delete_grey.png) no-repeat; }
+.boxreport ul.liststatiticdet li a.report-spam { background: url(../../images/main/icon_flag_grey.png) no-repeat; }
+.boxreport ul.liststatiticdet li a.upvote-link { background: url(../../images/main/icon_upvote_off.png) no-repeat; }
+.boxreport ul.liststatiticdet li a.downvote-link { background: url(../../images/main/icon_downvote_off.png) no-repeat; }
+.boxreport ul.liststatiticdet li a.removequestion:hover { background: url(../../images/main/icon_delete_red.png) no-repeat; }
+.boxreport ul.liststatiticdet li a.report-spam:hover { background: url(../../images/main/icon_flag_red.png) no-repeat; }
+
+.boxreport ul.liststatiticdet li a.selectedupvote-link,
+.boxreport ul.liststatiticdet li a.upvote-link:hover { background: url(../../images/main/icon_upvote_on.png) no-repeat; }
+
+.boxreport ul.liststatiticdet li a.selecteddownvote-link,
+.boxreport ul.liststatiticdet li a.downvote-link:hover { background: url(../../images/main/icon_downvote_on.png) no-repeat; }
+
+.comment-content ul.liststatiticdet li,
+.image-wrapper ul.liststatiticdet li
+{	
+	height: 12px;	
+	padding: 2px 5px 0 5px;
+}
+
+.comment-content ul.liststatiticdet li a.upvote-link,
+.comment-content ul.liststatiticdet li a.downvote-link, 
+.comment-content ul.liststatiticdet li a.selectedupvote-link,
+.comment-content ul.liststatiticdet li a.selecteddownvote-link,
+.comment-content ul.liststatiticdet li a.report-spam, 
+.comment-content ul.liststatiticdet li a.removequestion
+{
+    width:13px;
+    height:13px;
+}
+
+.comment-content ul.liststatiticdet li.voteupcount,
+.comment-content ul.liststatiticdet li.votedowncount
+{
+    padding: 2px 5px 0 0;
+    font-size:12px;
+}
+
+.comment-content ul.liststatiticdet li a.removequestion { background: url(../../images/main/icon_delete_small_grey.png) no-repeat; }
+.comment-content ul.liststatiticdet li a.report-spam { background: url(../../images/main/icon_flag_small_grey.png) no-repeat; }
+.comment-content ul.liststatiticdet li a.upvote-link { background: url(../../images/main/icon_upvote_small_off.png) no-repeat; }
+.comment-content ul.liststatiticdet li a.downvote-link { background: url(../../images/main/icon_downvote_small_off.png) no-repeat; }
+.comment-content ul.liststatiticdet li a.removequestion:hover { background: url(../../images/main/icon_delete_small_red.png) no-repeat; }
+.comment-content ul.liststatiticdet li a.report-spam:hover { background: url(../../images/main/icon_flag_small_red.png) no-repeat; }
+
+.comment-content ul.liststatiticdet li a.selectedupvote-link,
+.comment-content ul.liststatiticdet li a.upvote-link:hover { background: url(../../images/main/icon_upvote_small_on.png) no-repeat; }
+
+.comment-content ul.liststatiticdet li a.selecteddownvote-link,
+.comment-content ul.liststatiticdet li a.downvote-link:hover { background: url(../../images/main/icon_downvote_small_on.png) no-repeat; }
+
+.comment-content .content
+{
+    clear:both;
+    padding-top:10px;
+}
+.comment-content .posted
+{
+    float:left;
+}
+
+.boxreport ul.liststatiticdet li a.upvote-linkreadonly,
+.boxreport ul.liststatiticdet li a.downvote-linkreadonly,
+.comment-content ul.liststatiticdet li a.upvote-linkreadonly,
+.comment-content ul.liststatiticdet li a.downvote-linkreadonly,
+.image-wrapper ul.liststatiticdet li a.upvote-linkreadonly,
+.image-wrapper ul.liststatiticdet li a.downvote-linkreadonly
+{
+    cursor: default
+}
+
+.boxreport ul.liststatiticdet li a.upvote-linkreadonly:hover,
+.boxreport ul.liststatiticdet li a.upvote-linkreadonly
+{ background:  url(../../images/main/icon_upvote_off.png) no-repeat; }
+.boxreport ul.liststatiticdet li a.downvote-linkreadonly:hover,
+.boxreport ul.liststatiticdet li a.downvote-linkreadonly 
+{ background:  url(../../images/main/icon_downvote_off.png) no-repeat; }
+
+.comment-content ul.liststatiticdet li a.upvote-linkreadonly:hover,
+.comment-content ul.liststatiticdet li a.upvote-linkreadonly,
+.image-wrapper ul.liststatiticdet li a.upvote-linkreadonly:hover,
+.image-wrapper ul.liststatiticdet li a.upvote-linkreadonly 
+{ background:  url(../../images/main/icon_upvote_small_off.png) no-repeat; }
+
+.comment-content ul.liststatiticdet li a.downvote-linkreadonly:hover,
+.comment-content ul.liststatiticdet li a.downvote-linkreadonly,
+.image-wrapper ul.liststatiticdet li a.downvote-linkreadonly:hover,
+.image-wrapper ul.liststatiticdet li a.downvote-linkreadonly 
+{ background:  url(../../images/main/icon_downvote_small_off.png) no-repeat; }

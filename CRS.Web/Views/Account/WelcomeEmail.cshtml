@@ -1,0 +1,28 @@
+﻿@model CRS.Web.ViewModels.Account.RegisterViewModel
+@{
+    ViewBag.Title = "Đăng ký thành công";
+}
+@using (Html.BeginForm())
+{
+    <div class="content-wrapper">
+        <h1 class="title">
+            Chào mừng tới Vuabep.vn</h1>
+        <br />
+        <div class="boxbigcontent">
+            <h2>
+                ĐĂNG KÝ HOÀN TẤT</h2>
+            <ul class="listok">
+                <li>
+                    <p>
+                        <strong>Thông tin đăng ký của bạn đã được xác nhận:</strong><br />
+                        Tên đăng nhập: <em>@Model.Username</em><br />
+                        Email: <em>@Model.Email</em><br />
+                        <br />
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <div class="boxbigcontentbottom">
+        </div>
+    </div>
+}

@@ -1,0 +1,29 @@
+﻿@model CRS.Web.ViewModels.Recipes.InsertRecipeViewModel
+@using CRS.Web.Models
+@using CRS.Web.Helpers
+@if (Model.Recipe.ImageUrl != null)
+{
+    @Html.HiddenFor(m => m.Recipe.ImageUrl)
+    <div class="image-holder">
+        <img src=" @Url.ShowImage(Model.Recipe.ImageUrl, ImageType.Thumbnail)" alt="Xem trước ảnh" class="big-imgavatar"/>
+    </div>
+    <div>
+        <input type="button" class="submitbutton" id="delete-image" value="Xóa" />
+    </div>
+}
+else
+{
+    @Html.HiddenFor(m => m.OldImageUrl)
+    
+    <div class="image-widget form-managed-file clearfix">
+        <div class="image-widget-data">
+            <input type="file" id="edit-field-hinh-chinh-und-0-upload" name="File"
+                size="22" class="form-file" />
+        </div>
+    </div>
+    <div class="description">
+        Dung lượng ảnh phải bé hơn <strong>@AppConfigs.UploadImageMaxSize MB</strong> .
+        <br>
+        Định dạng ảnh hỗ trợ: <strong>PNG JPG JPEG</strong> .
+    </div>
+}

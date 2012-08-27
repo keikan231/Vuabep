@@ -1,0 +1,54 @@
+﻿@using CRS.Web.Models
+@model CRS.Web.Areas.Admin.ViewModels.ManageUsers.EditUserViewModel
+@Html.ValidationSummary(true, ValidationMessages.Summary)
+<div class="content-box">
+    <div class="content-box-header">
+        <h3>
+            User information</h3>
+    </div>
+    <div class="content-box-content">
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(m => m.User.Id)
+            <div class="input">
+                 <p>
+                    @Html.HiddenFor(m => m.User.Username)
+                    @Html.LabelFor(m => m.User.Username)
+                    @Html.TextBoxFor(m => m.User.Username, new { @class = "text-input small-input", @readonly = "true", disabled = "true" })
+                </p>
+                <p>
+                    @Html.HiddenFor(m => m.User.Email)
+                    @Html.Label("Email")
+                    @Html.TextBoxFor(m => m.User.Email, new { @class = "text-input small-input", @readonly = "true", disabled = "true" })
+                </p>
+                <p class="required">
+                    @Html.LabelFor(m => m.User.Point)
+                    @Html.TextBoxFor(m => m.User.Point, new { @class = "text-input small-input" })
+                    @Html.ValidationMessageFor(m => m.User.Point)
+                </p>
+                <p>
+                    @Html.Label("User State")                    
+                    @Html.DropDownListFor(m => m.User.UserStateId, new SelectList(Model.UserStates, "Id", "Name"), new { @class = "small-input" })                    
+                </p>
+                <p>
+                    @Html.Label("Roles")
+                </p>
+                <ul class="checkbox-list">
+                    @for (int i = 0; i < Model.Roles.Count; i++)
+                    {
+                        <li>
+                            @Html.CheckBoxFor(m => m.Roles[i].IsChecked)
+                            @Html.LabelFor(m => m.Roles[i].IsChecked, Model.Roles[i].Role.Name)
+                            @Html.HiddenFor(m => Model.Roles[i].Role.Id)
+                            @Html.HiddenFor(m => Model.Roles[i].Role.Name)
+                        </li>
+                    }
+                </ul>
+                <p class="buttons">
+                    @Html.Partial("_SaveButton")
+                    @Html.Partial("_CancelButton", new CRS.Web.Models.ActionInfo("Cancel", "Details") { Id = @Model.User.Id })                                       
+                </p>
+            </div>
+        }         
+    </div>
+</div>

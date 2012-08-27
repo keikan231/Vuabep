@@ -1,0 +1,68 @@
+﻿@model CRS.Web.ViewModels._News.InsertNewsViewModel
+@using CRS.Resources
+@using CRS.Web.Helpers
+@using CRS.Common
+<script type="text/javascript" src="@Url.Content("~/Scripts/ckeditor/ckeditor.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/ckfinder/ckfinder.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/ckeditor/adapters/jquery.js")"></script>
+<div class="content-wrapper">
+    @using (Html.BeginForm((Model.News.Id == 0 ? "Create" : "Edit"), "News", FormMethod.Post, new { enctype = "multipart/form-data", @class = "node-form node-recipe-form" }))
+    {
+        @Html.HiddenFor(m => m.News.Id)
+        <div class="form-item form-type-textfield form-item-title">
+            @Html.LabelFor(m => m.News.Title)
+            @Html.TextBoxFor(m => m.News.Title, new { @id = "edit-title", @class = "wide hint form-text required", @maxlength = "255", @size = "60" })
+            @Html.ValidationMessageFor(m => m.News.Title)
+        </div>
+        <div id="edit-field-hinh-chinh" class="field-type-image field-name-field-hinh-chinh field-widget-image-image form-wrapper">
+            <div id="edit-field-hinh-chinh-und-0-ajax-wrapper">
+                <div class="form-item form-type-managed-file form-item-field-hinh-chinh-und-0">
+                    @Html.LabelFor(m => m.News.ImageUrl)
+                    <div id='image-process'>
+                        @Html.Partial("_UploadImage", Model)
+                    </div>
+                </div>
+            </div>
+        </div>          
+            
+        <div id="edit-field-mo-ta" class="field-type-text-long field-name-field-mo-ta field-widget-textarea-extra-count form-wrapper">
+            <div id="field-mo-ta-add-more-wrapper">
+                @Html.LabelFor(m => m.News.ContentText)
+                <div class="form-textarea-wrapper">
+                    @Html.TextAreaFor(m => m.News.ContentText, new { @id = "edit-field-mo-ta-und-0-value", @class = "hint wide form-textarea required", @rows = "3" })
+                    @Html.ValidationMessageFor(m => m.News.ContentText)
+                </div>
+            </div>
+        </div>
+                    
+        @Html.LabelFor(m => m.News.ContentHtml)
+        <div style="margin: 0.5em 0 0.5em 0;">
+            @Html.TextAreaFor(m => m.News.ContentHtml, new { @id = "news-ckeditor" })
+            @Html.ValidationMessageFor(m => m.News.ContentHtml)
+        </div>
+        <div>
+            <input class="submitbutton" type="submit" value="@(Model.News.Id == 0 ? "Gửi" : "Lưu")" />
+            <a class="submitbutton" type="submit" href="@(Model.News.Id == 0 ? Url.Action("Index", "News") : Url.NewsLink(Model.News.Id, Model.News.TitleUrl))">
+                Bỏ qua</a>
+        </div>
+           
+    }
+</div>
+<script type="text/javascript">
+     CKEDITOR.replace('news-ckeditor',
+    {
+    filebrowserImageBrowseUrl: '/Scripts/ckfinder/ckfinder.html?type=Images',
+    filebrowserImageUploadUrl: '/Scripts/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+    });
+
+    $(document).ready(function () {
+        $("#delete-image").click(function (e) {
+            if (!confirm("Bạn có chắc muốn xóa hình ảnh này không?")) {
+                return false;
+            }
+            else {
+            $("#image-process").load("@Html.Raw(Url.Action("DeleteImage", "News", new { newsId = Model.News.Id }))");
+            }
+        });
+    });
+</script>

@@ -1,0 +1,8 @@
+#share-list {width:252px;}
+#share-list li {width:222px; padding: 0 15px; height:47px; background: url(../../images/main/button-big.png) no-repeat; margin-bottom:10px;font:14px/47px Arial, Verdana, sans-serif;text-transform:uppercase;} 
+#share-list li a          {display:block; padding-left:35px;color:#3399CC;}
+#share-list #share-twitter a { background: url(../../images/main/icons.png) 0 11px no-repeat;} 
+#share-list #share-fb a { background: url(../../images/main/icons.png) 0 -73px no-repeat;}
+#share-list #share-linkhay a {}   
+#share-list #share-friends a { background: url(../../images/main/icons.png) 0 -170px no-repeat;} 
+#share-list #share-linkhay a {background: url(../../images/main/icons.png) 0 -238px no-repeat;}

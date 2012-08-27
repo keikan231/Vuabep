@@ -1,0 +1,8 @@
+﻿@model CRS.Web.Areas.Admin.ViewModels.ManageRoles.InsertRoleViewModel
+@{
+    ViewBag.Title = "Create a Role";
+    ViewBag.MenuGroup = "Users";
+    ViewBag.MenuName = "CreateRole";
+    ViewBag.PageHeader = "Create a Role";
+}
+@Html.Partial("_RoleInputForm", Model)

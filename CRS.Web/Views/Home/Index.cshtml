@@ -1,0 +1,93 @@
+﻿@using CRS.Web.Models
+@using CRS.Business.Models
+@model CRS.Web.ViewModels.Sort.SortResultViewModel
+@{
+    ViewBag.Title = "Chuyên trang thông tin ẩm thực";           
+}
+@if (Model.NewsNotFound)
+{
+    <div class="section-headline" id="news">
+        <div class="section-headline-content">
+            <h2>
+                @Html.ActionLink("Tin tức", "Index", "News", null, new { @class = "headline-link" })
+            </h2>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <h2 class="title">
+            Không có tin tức nào!</h2>
+    </div>
+}
+else
+{
+    <div class="section-headline" id="news">
+        <div class="section-headline-content">
+            <h2>
+                @Html.ActionLink("Tin tức", "Index", "News", null, new { @class = "headline-link" })
+            </h2>
+            @Html.Partial("_IndexNewsSort")
+        </div>
+    </div>
+    <ul class="recipe-list">
+        @Html.Partial("_NewsListShared", Model.News)
+    </ul>
+    
+}
+@if (Model.RecipeNotFound)
+{
+    <div class="section-headline" id="recipes">
+        <div class="section-headline-content">
+            <h2>
+                @Html.ActionLink("Công thức nấu ăn", "Index", "Recipes", null, new { @class = "headline-link" })
+            </h2>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <h2 class="title">
+            Không có công thức nấu ăn nào!</h2>
+    </div>
+}
+else
+{
+    <div class="section-headline" id="recipes">
+        <div class="section-headline-content">
+            <h2>
+                @Html.ActionLink("Công thức nấu ăn", "Index", "Recipes", null, new { @class = "headline-link" })
+            </h2>
+            @Html.Partial("_IndexRecipeSort")
+        </div>
+    </div>
+    <ul class="recipe-list">
+        @Html.Partial("_RecipeListShared", Model.Recipes)
+    </ul>
+    
+}
+@if (Model.TipNotFound)
+{
+    <div class="section-headline" id="tips">
+        <div class="section-headline-content">
+            <h2>
+                @Html.ActionLink("Mẹo vặt", "Index", "Tips", null, new { @class = "headline-link" })
+            </h2>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <h2 class="title">
+            Không có mẹo vặt nào!</h2>
+    </div>
+}
+else
+{
+    <div class="section-headline" id="tips">
+        <div class="section-headline-content">
+            <h2>
+                @Html.ActionLink("Mẹo vặt", "Index", "Tips", null, new { @class = "headline-link" })
+            </h2>
+            @Html.Partial("_IndexTipSort")
+        </div>
+    </div>
+    <ul class="recipe-list">
+        @Html.Partial("_TipListShared", Model.Tips)
+    </ul>
+    
+}

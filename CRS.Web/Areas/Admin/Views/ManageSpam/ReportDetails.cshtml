@@ -1,0 +1,16 @@
+﻿@model IList<CRS.Web.Models.ReportedGeneral>
+@{
+    Layout = null;
+}
+@(Html.Telerik().Grid(Model).Name("Reports")
+           .Footer(false)
+           .DataKeys(dataKeys => dataKeys.Add(c => c.Id))
+           .Columns(columns =>
+           {
+               columns.Bound(o => o.ReportedBy).Width("100px");
+               columns.Bound(o => o.ReportedDate).Width("100px");
+               columns.Bound(o => o.Reason).Width("150px");
+
+           })
+ )
+

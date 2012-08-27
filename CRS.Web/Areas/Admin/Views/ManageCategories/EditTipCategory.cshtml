@@ -1,0 +1,8 @@
+﻿@model CRS.Web.Areas.Admin.ViewModels.ManageCategories.InsertTipCategoryViewModel
+@{
+    ViewBag.Title = "Create a Tip Category";
+    ViewBag.MenuGroup = "TipCategories";
+    ViewBag.MenuName = "CreateTipCategory";
+    ViewBag.PageHeader = "Create a Tip Category";
+}
+@Html.Partial("_TipCategoryInputForm", Model)

@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @Html.Partial("_LayoutHead")
+    @RenderSection("Head", required: false)
+</head>
+<body id="top">
+    <div id="head-nav-container">
+        <div id="head-nav">
+            @Html.Partial("_HeaderLogin")
+        </div>
+    </div>
+    <div id="out-bg">
+        <div id="outter-bg">
+            <div id="wrap">
+                @Html.Partial("_Header")
+            </div>
+        </div>
+        <div id="body_content">
+            <div id="main_content">
+                <div class="leaf-top">
+                </div>
+                <div id="main">
+                    <div class="tabs">
+                    </div>
+                    <div id="left">
+                        <div id="left-top">
+                        </div>
+                        <div id="left-body">
+                            <div class="region region-content">
+                                @RenderBody()
+                                <p id="back-top">
+                                    <a href="#top"><span></span>Trở về đầu trang</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div id="left-bottom">
+                        </div>
+                    </div>
+                    <div id="right">
+                        @RenderSection("Right", required: false)
+                        @Html.Partial("_Sidebar")
+                    </div>
+                </div>
+                @*  TODO - KIENTT - missing 
+                <div class="region region-adspagebottom">
+                </div>*@
+            </div>
+            @*TODO - KIENTT - missing 
+            <div id="link-footer"></div>*@
+            <div id="footer">
+                @Html.Partial("_Footer")
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/crs.js")"></script>
+    <link href="@Url.Content("~/Scripts/scroll-to-top/scroll-to-top.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/scroll-to-top/scroll-to-top.js")"></script>
+    <!-- Place this tag after the last +1 button tag. -->
+    <script type="text/javascript">
+        window.___gcfg = { lang: 'vi' };
+
+        (function () {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+    </script>
+    @RenderSection("Script", required: false)
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿@model CRS.Web.ViewModels.Words.InsertWordViewModel
+
+@Html.Partial("_Message")
+@{
+    ViewBag.Title = "Sửa từ";
+    ViewBag.MenuName = "Words";
+}
+@if (!User.Identity.IsAuthenticated)
+{
+    <div class="content-wrapper">
+        <h1 class="title">
+            Lời nhắn từ Vuabep.vn</h1>
+        <div class="boxfullcontent">
+            @Html.Partial("_MustLoginMessage")
+        </div>
+    </div>
+}
+else if (Model != null)
+{
+    @Html.ValidationSummary(true, ValidationMessages.Summary)
+    <div class="section-headline">
+    <div class="section-headline-content">
+        <h2>
+            Sửa từ</h2>
+    </div>
+</div>
+    @Html.Partial("_WordInputForm", Model)
+}

@@ -1,0 +1,42 @@
+﻿@model CRS.Web.ViewModels.Account.UserTipViewModel
+@using CRS.Web.Models
+@if (Model != null)
+{
+    <div class="profile-padd user-friend">
+        @if (Model.Tips.Count == 0)
+        {
+            <h2 class="title">
+                Chưa đóng góp mẹo vặt nào
+            </h2>
+        }
+        else
+        {
+            <h2 class="title">
+                Đã đóng góp @Model.Total mẹo vặt
+            </h2>
+            <ul class="recipe-list handbook">
+                @foreach (var item in Model.Tips)
+                {    
+                    <li class="@(Model.Tips.Count - 1 == Model.Tips.IndexOf(item) ? "last" : "")">
+                        @Html.TipImageActionLink("Tips", @Url.ShowImage(item.ImageUrl, ImageType.Thumbnail), item.Title, item.Id, item.Title, item.TitleUrl, null, new { @class = "recipe-thumb" })
+                        <div class="recipe-summary">
+                            <h2 property="dc:title" datatype="">
+                                @Html.TipLink(item.Id, item.Title.Truncate(40), item.TitleUrl)</h2>
+                            <span class="meta">@item.Views lượt xem - @item.PostedDate.AgoString() </span>
+                            <p class="desc">
+                                @item.ContentText</p>
+
+                            <ul class="user-actions">
+                                <li class="user-like" title="@(item.UpVotes) thích"><span class="like_count like_count_11344">@item.UpVotes</span>
+                                    thích </li>
+                                <li class="user-unlike" title="@(item.DownVotes) không thích"><span class="like_count like_count_11344">@item.DownVotes</span>
+                                    không thích </li>
+                                <li class="user-comment" title="@(item.Comments) bình luận">@item.Comments bình luận</li>
+                            </ul>
+                        </div>
+                    </li>       
+                }
+            </ul>
+        }
+    </div>
+}

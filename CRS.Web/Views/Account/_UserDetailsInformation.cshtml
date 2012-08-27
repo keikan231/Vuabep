@@ -1,0 +1,92 @@
+﻿@model CRS.Web.ViewModels.Account.UpdateUserProfileViewModel
+@using CRS.Web.Framework.Security;
+@using CRS.Common;
+@if (Model != null)
+{
+    <div class="profile-padd user-home">
+        <div class="content-wrapper">
+            <h2>
+                Thông tin cá nhân</h2>
+            <dl id="user-profile">
+                <dt>Tham gia từ</dt>
+                <dd>
+                    @Model.User.CreatedDate.ToShortDateFormatString()</dd>
+                @if (Model.User.Email != null)
+                {
+                    <dt>Địa chỉ email</dt>
+                    <dd>
+                        @Model.User.Email</dd>
+                }
+                <dt>Điểm đóng góp</dt>
+                <dd>
+                    @Model.User.Point</dd>
+                <dt>Hình đại diện</dt>
+                <dd>
+                    <div class="user-picture small-avatar">
+                        <img src="@Url.UserAvatar(Model.User, CRS.Web.Models.ImageType.Thumbnail)" alt="Ảnh đại diện" class="big-imgavatar" height="50px" width="50px" />
+                    </div>
+                </dd>
+                <dt>Ngày sinh</dt>
+                @if (Model.User.Birthday != null)
+                {
+                    <dd>@Model.User.Birthday.Value.ToShortDateFormatString()</dd>
+                }
+                else
+                {
+                    <dd>
+                        Chưa cập nhật</dd>
+                }
+                <dt>Giới tính</dt>
+                @if (Model.User.Sex != null)
+                {
+                    <dd>@Model.User.Sex</dd>
+                }
+                else
+                {
+                    <dd>
+                        Chưa cập nhật</dd>
+                }
+                <dt>Đang ở tại</dt>
+                @if (Model.User.Location != null)
+                {
+                    <dd>@Model.User.Location.Name</dd>
+                }
+                else
+                {
+                    <dd>
+                        Chưa cập nhật</dd>
+                }
+                <dt>Sở thích</dt>
+                @if (Model.User.Hobbies != null)
+                {
+                    <dd>@Model.User.Hobbies</dd>
+                }
+                else
+                {
+                    <dd>
+                        Chưa cập nhật</dd>
+                }
+                <dt>Khả năng nấu nướng</dt>
+                @if (Model.User.CookingExp != null)
+                {
+                    <dd>@Model.User.CookingExp</dd>
+                }
+                else
+                {
+                    <dd>
+                        Chưa cập nhật</dd>
+                }
+                <dt>Địa chỉ mạng xã hội thường dùng</dt>
+                @if (Model.User.SocialNetworkUrl != null)
+                {
+                    <dd>@Model.User.SocialNetworkUrl</dd>
+                }
+                else
+                {
+                    <dd>
+                        Chưa cập nhật</dd>
+                }
+            </dl>
+        </div>
+    </div>
+}

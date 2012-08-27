@@ -1,0 +1,11 @@
+﻿@model CRS.Web.ViewModels.Recipes.ListRecipeViewModel
+@{
+    Layout = null;
+}
+@{
+    @Html.Partial("_RecipeList", Model.Recipes)
+    if (Model.HasMore)
+    {
+    @Html.ActionLink("Xem thêm", "RecipeSmallCategoryIndex", "Recipes", new { sort = Model.Sort, page = Model.Page + 1 }, new { @class = "more", id = "more" })
+    }
+}

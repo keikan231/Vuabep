@@ -1,0 +1,55 @@
+﻿@if (false) 
+{ 
+    // Just use this script to enable jQuery intellisense in Visual Studio. Never render to real HTML.
+    <script src="/Scripts/jquery-1.5.1-vsdoc.js" type="text/javascript"></script>
+}
+@using CRS.Web.Models
+@model CRS.Web.Areas.Admin.ViewModels.ManageDictionary.ListWordsViewModel
+@{
+    ViewBag.Title = "Manage Dictionary";
+    ViewBag.MenuGroup = "Dictionary";
+    ViewBag.MenuName = "UnapproveWords";
+    ViewBag.PageHeader = "Unapprove Words";
+}
+
+@(Html.Telerik().Grid(Model.Words)
+    .Name("Words")
+    .DataKeys(dataKeys => dataKeys.Add(c => c.Id))
+    .Columns(columns =>
+    {
+        columns.Bound(o => o.Key).Width("300px").Title("Word");
+        columns.Bound(o => o.Value).Width("300px").Title("Meaning");
+        columns.Template(
+               @<text>
+                @Html.UserLink(item.CreatedBy.Id, item.CreatedBy.Username, new { target = "_blank" })
+                </text>
+              ).Width("100px").Title("Created By");
+        columns.Bound(o => o.CreatedDate).Format("{0:dd/MM/yyyy HH:mm}");
+        columns.Template(
+            @<text> 
+                @Html.Partial("_EditButton", new ActionInfo("Unapprove", "Unapprove") { Id = item.Id })
+                @Html.Partial("_DeleteButton", new ActionInfo("Delete", "DeleteWord") { Id = item.Id })
+            </text>
+         );
+    })
+                        .DataBinding(dataBinding => dataBinding.Server().Select("ApprovedWordIndex", "ManageDictionary"))
+                        .Pageable(pager => pager.PageSize(AppConfigs.DefaultAdminGridPageSize))
+                        .EnableCustomBinding(true)
+                        .Sortable()
+                        .Scrollable(scrolling => scrolling.Enabled(true).Height(350))
+                    )
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".t-grid-edit").click(function (e) {
+            if (!confirm("Are you sure you want to unapprove this Word?")) {
+                return false;
+            }
+        });
+        $(".t-grid-delete").click(function (e) {
+            if (!confirm("Are you sure you want to delete this Word?")) {
+                return false;
+            }
+        });
+    });
+</script>

@@ -1,0 +1,154 @@
+﻿@using CRS.Resources
+@model CRS.Web.ViewModels.Account.UpdateUserProfileViewModel
+@using CRS.Web.Framework.Security;
+@using CRS.Common;
+@Html.Partial("_Message")
+@{
+    ViewBag.Title = "Thông tin cá nhân";
+}
+@if (Model != null)
+{
+    <div class="profile-box">
+        <div id="left-user">
+            <div class="picture-home">
+                <div class="user-picture small-avatar">
+                    <img src="@Url.UserAvatar(Model.User, CRS.Web.Models.ImageType.Big)" alt="Ảnh đại diện" class="big-imgavatar" height="100px" width="100px" />
+                </div>
+            </div>
+            <ul class="info-user-list manage-user-list clear" id="tabsfullbox">
+                <li class="bep"><a href="#tabs-2" id="tab2">Thống kê</a> </li>
+                <li class="recipe"><a href="#tabs-3" id="tab3">Công thức</a> </li>
+                <li class="blog"><a href="#tabs-4" id="tab4">Mẹo vặt</a> </li>
+                <li class="forum"><a href="#tabs-5" id="tab5">Tin tức</a> </li>
+                <li class="banbe"><a href="#tabs-6" id="tab6">Câu hỏi</a> </li>
+                <li class="banbe"><a href="#tabs-7" id="tab7">Trả lời</a> </li>
+                <li class="profile"><a href="#tabs-1" id="tab1">Thông tin cá nhân</a> </li>
+            </ul>
+        </div>
+        <div id="right-user">
+            <div class="profile-padd">
+                <div class="info-profile">
+                    @Html.ActionLink(Model.User.Username.Truncate(20), "Details", "Account", null, new { title = string.Format("{0} ({1})", Model.User.Username.Truncate(20), Model.User.Email), @class = "username" })
+                    <p>
+                        @Model.User.Level</p>
+                </div>
+            </div>
+            <div class="tabsfullcontent" id="tabs-1">
+            </div>
+            <div class="tabsfullcontent" id="tabs-2">
+            </div>
+            <div class="tabsfullcontent" id="tabs-3">
+            </div>
+            <div class="tabsfullcontent" id="tabs-4">
+            </div>
+            <div class="tabsfullcontent" id="tabs-5">
+            </div>
+            <div class="tabsfullcontent" id="tabs-6">
+            </div>
+            <div class="tabsfullcontent" id="tabs-7">
+            </div>
+            <div class="boxfullcontentbottom">
+            </div>
+        </div>
+    </div>
+    <text>
+    @section Script
+{
+        <script src="@Url.Content("~/Scripts/ui_core.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/ui_tabs.js")" type="text/javascript"></script>
+        <script type="text/javascript">
+        function loadUserTab(index)
+        {
+            var url = 'GetUserTabDetails/' + index + '?userid=' + @Model.User.Id;
+            var targetDiv = "#tabs-" + index;
+            
+            $(targetDiv).html("<img src='@Url.Content("~/Content/images/main/loading.gif")' style='margin-left: 455px;'/>");
+
+            $.get(url, null, function (result) {
+                $(targetDiv).html(result);
+            });
+        }
+
+        $(document).ready(function () {
+            var isTabInfoLoaded = false;
+            var isTabNewsLoaded = false;
+            var isTabTipsLoaded = false;
+            var isTabRecipesLoaded = false;
+            var isTabStatisticLoaded = false;
+            var isTabQuestionLoaded = false;
+            var isTabAnswerLoaded = false;
+
+            $('#tabsfullbox').tabs({ fx: { opacity: 'toggle'} });
+
+            $(document).ready(function () {
+                $("#tabsfullbox").tabs();
+                loadUserTab(1);
+            });
+
+            $("#tab2").click(function(e){
+                e.preventDefault();
+
+                if(!isTabStatisticLoaded)
+                {
+                    loadUserTab(2);
+                }
+
+                isTabStatisticLoaded = true;
+            });
+
+            $("#tab3").click(function(e){
+                e.preventDefault();
+
+                if(!isTabRecipesLoaded)
+                {
+                    loadUserTab(3);
+                }
+
+                isTabRecipesLoaded = true;
+            });
+
+            $("#tab4").click(function(e){
+                e.preventDefault();
+
+                if(!isTabTipsLoaded)
+                {
+                    loadUserTab(4);
+                }
+
+                isTabTipsLoaded = true;
+            });
+            $("#tab5").click(function(e){
+                e.preventDefault();
+
+                if(!isTabNewsLoaded)
+                {
+                    loadUserTab(5);
+                }
+
+                isTabNewsLoaded = true;
+            });
+            $("#tab6").click(function(e){
+                e.preventDefault();
+
+                if(!isTabQuestionLoaded)
+                {
+                    loadUserTab(6);
+                }
+
+                isTabQuestionLoaded = true;
+            });
+            $("#tab7").click(function(e){
+                e.preventDefault();
+
+                if(!isTabAnswerLoaded)
+                {
+                    loadUserTab(7);
+                }
+
+                isTabAnswerLoaded = true;
+            });
+        });
+        </script>
+    }
+    </text>
+}

@@ -1,0 +1,50 @@
+﻿@using CRS.Business.Models
+<ul class="section-nav">
+    @if (Model.OrderBy == Order.Views)
+    {
+        <li class="current">
+            @Html.ActionLink("Lượt xem", "Result", "Search", new { sort = "views", nameUrl = Model.Input.NameUrl, categoryName = Model.Input.CategoryName }, new { @class = "active" })
+        </li>
+    }
+    else
+    { 
+        <li>@Html.ActionLink("Lượt xem", "Result", "Search", new { sort = "views", nameUrl = Model.Input.NameUrl, categoryName = Model.Input.CategoryName }, new { @class = "active" })
+        </li>
+    }
+    @if (Model.OrderBy == Order.Comments)
+    {
+        <li class="current">
+            @Html.ActionLink("Bình luận", "Result", "Search", new { sort = "comments", nameUrl = Model.Input.NameUrl, categoryName = Model.Input.CategoryName }, new { @class = "active" })
+        </li>
+    }
+    else
+    { 
+        <li>
+            @Html.ActionLink("Bình luận", "Result", "Search", new { sort = "comments", nameUrl = Model.Input.NameUrl, categoryName = Model.Input.CategoryName }, new { @class = "active" })
+        </li>
+    }
+     @if (Model.OrderBy == Order.Rates)
+    {
+        <li class="current">
+            @Html.ActionLink("Đánh giá", "Result", "Search", new { sort = "rates", nameUrl = Model.Input.NameUrl, categoryName = Model.Input.CategoryName }, new { @class = "active" })
+        </li>
+    }
+    else
+    { 
+        <li>
+            @Html.ActionLink("Đánh giá", "Result", "Search", new { sort = "rates", nameUrl = Model.Input.NameUrl, categoryName = Model.Input.CategoryName }, new { @class = "active" })
+        </li>
+    }
+     @if (Model.OrderBy == Order.Approval)
+    {
+        <li class="current">
+            @Html.ActionLink("Chứng nhận", "Result", "Search", new { sort = "approval", nameUrl = Model.Input.NameUrl, categoryName = Model.Input.CategoryName }, new { @class = "active" })
+        </li>
+    }
+    else
+    { 
+        <li>
+            @Html.ActionLink("Chứng nhận", "Result", "Search", new { sort = "approval", nameUrl = Model.Input.NameUrl, categoryName = Model.Input.CategoryName }, new { @class = "active" })
+        </li>
+    }
+</ul>

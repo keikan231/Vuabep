@@ -1,0 +1,76 @@
+﻿@model CRS.Business.Models.Entities.TipComment
+@Html.ValidationSummary(true, ValidationMessages.Summary)
+@*@using (Html.BeginForm("Comment", "PlaceComments", FormMethod.Post))
+{*@
+<div class="editor">
+    @Html.HiddenFor(m => m.TipId)
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Html.ValidationMessageFor(m => m.ContentText, "", new { id = "validatereplymessage" })        
+    }
+    <fieldset>
+        @Html.TextAreaFor(m => m.ContentText, new { id = "replycontent", @tabindex = "1", @rows = "3" })
+    </fieldset>
+</div>
+<div id="replybuttons">
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <p>
+            Bạn phải @Html.ActionLink("đăng nhập", "Login", "Account", new { returnUrl = Request.UrlReferrer.AbsolutePath }, null)
+            để sử dụng chức năng này. Nếu bạn chưa có tài khoản, hãy đăng ký @Html.ActionLink("tại đây", "Register", "Account")</p>               
+    }
+    else
+    { 
+        <input type="button" class="submit small uniform-processed" id="submitcomment" tabindex="2" value="Bình luận" />
+    }
+</div>
+@*}*@
+<script type="text/javascript">
+    $(document).ready(function () {        
+    
+        var isPosting = false;
+        $("#submitcomment").click(function (e) { 
+            e.preventDefault();
+            @if (Request.IsAuthenticated)
+            {
+                <text>
+                if (isPosting)
+                    return false;
+                isPosting = true;
+                var content = $('#replycontent').val();
+                $.ajax ({
+                    type: "POST",
+                    url: "@Url.Action("Comment", "TipComments")",
+                    dataType: "html",
+                    data: {  
+                        Tipid: @Model.TipId, 
+                        ContentText: content
+                    },
+                    success: function (data) {
+                         $('#replycontent').val("");
+                        $('.comment-list').prepend(data);
+                        var firstli = $('#comment-list li').first();
+                        $(firstli).show(200, function(){$(this).fadeTo(300,1)});
+
+                        if(data != "") {
+                            var total = parseInt($("#totalTipComment").html());
+                            $("#totalTipComment").html(total + 1);
+                        }
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert(xhr.statusText);
+                        alert(thrownError);                        
+                    },
+                    complete: function() {
+                        isPosting = false;
+                    }
+                });
+                </text>
+            }
+            else
+            {
+                @:showUnauthorizedMessage();
+            }
+        });
+    });
+</script>

@@ -1,0 +1,37 @@
+﻿@model CRS.Web.ViewModels.Account.UserNewsViewModel
+@using CRS.Web.Models
+@if (Model != null)
+{
+    <div class="profile-padd user-friend">
+        @if (Model.News.Count == 0)
+        {
+            <h2 class="title">
+                Chưa đóng góp tin tức nào
+            </h2>
+        }
+        else
+        {
+            <h2 class="title">
+                Đã đóng góp @Model.Total tin tức
+            </h2>
+            <ul class="recipe-list handbook">
+                @foreach (var item in Model.News)
+                {    
+                    <li class="@(Model.News.Count - 1 == Model.News.IndexOf(item) ? "last" : "")">
+                        @Html.NewsImageActionLink("News", @Url.ShowImage(item.ImageUrl, ImageType.Thumbnail), item.Title, item.Id, item.Title, item.TitleUrl, null, new { @class = "recipe-thumb" })
+                        <div class="recipe-summary">
+                            <h2 property="dc:title" datatype="">
+                                @Html.NewsLink(item.Id, item.Title.Truncate(40), item.TitleUrl)</h2>
+                            <span class="meta">@item.Views lượt xem - @item.PostedDate.AgoString() </span>
+                            <p class="desc">
+                                @item.ContentText</p>
+                            <ul class="user-actions">
+                                <li class="user-comment" title="@(item.Comments) bình luận">@item.Comments bình luận</li>
+                            </ul>
+                        </div>
+                    </li>       
+                }
+            </ul>
+        }
+    </div>
+}

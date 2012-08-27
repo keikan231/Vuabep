@@ -1,0 +1,50 @@
+﻿@model CRS.Web.Areas.Admin.ViewModels.ManageCategories.InsertRecipeSmallCategoryViewModel
+@Html.ValidationSummary(true, ValidationMessages.Summary)
+<div class="content-box">
+    <div class="content-box-header">
+        <h3>
+            Small Recipe Category information</h3>
+    </div>
+    <div class="content-box-content">
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(m => m.RecipeSmallCategory.Id)
+                                  
+            <div class="input">
+                <p class="required">
+                    @Html.LabelFor(m => m.RecipeSmallCategory.Name)
+                    @Html.TextBoxFor(m => m.RecipeSmallCategory.Name, new { @class = "text-input small-input" })
+                    @Html.ValidationMessageFor(m => m.RecipeSmallCategory.Name)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.RecipeSmallCategory.Description)
+                    @Html.TextBoxFor(m => m.RecipeSmallCategory.Description, new { @class = "text-input small-input" })
+                    @Html.ValidationMessageFor(m => m.RecipeSmallCategory.Description)
+                </p>
+                <p>
+                    <label>Mapped Tip Category</label>
+                    @Html.DropDownListFor(m => m.RecipeSmallCategory.TipMappingId, new SelectList(Model.TipCategories, "Id", "Name"), new { @class = "small-input" })
+                    @Html.ValidationMessageFor(m => m.RecipeSmallCategory.TipMappingId)
+                </p>
+                <p>
+                    <label>Mapped Recipe Categories</label>
+                </p>
+                <ul class="checkbox-list">
+                    @for (int i = 0; i < Model.RecipeCategory.Count; i++)
+                    {
+                        <li>
+                            @Html.CheckBoxFor(m => m.RecipeCategory[i].IsChecked)
+                            @Html.LabelFor(m => m.RecipeCategory[i].RecipeCategory.Id, Model.RecipeCategory[i].RecipeCategory.Name)
+                            @Html.HiddenFor(m => Model.RecipeCategory[i].RecipeCategory.Id)
+                            @Html.HiddenFor(m => Model.RecipeCategory[i].RecipeCategory.Name)
+                        </li>
+                    }
+                </ul>
+                <p class="buttons">
+                    @Html.Partial("_SaveButton")
+                    @Html.Partial("_CancelButton", new CRS.Web.Models.ActionInfo("Cancel", "ManageRecipeSmallCategories"))
+                </p>
+            </div>
+        }
+    </div>
+</div>

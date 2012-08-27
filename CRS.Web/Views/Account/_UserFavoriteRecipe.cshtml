@@ -1,0 +1,71 @@
+﻿@model CRS.Web.ViewModels.Account.UserFavoriteRecipeViewModel
+@using CRS.Web.Models
+@if (Model != null)
+{
+    <div class="profile-padd user-friend">
+        <div id="delete-message">
+        </div>
+        <div id="favorite-list">
+            @Html.Partial("_FavoriteList", Model)
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    var isDeleting = false;
+    $(document).ready(function () {
+        function enableDeleteButton() {
+            var selected = $('.checkboxfavorite:checked').length;
+            if (selected == 0) {
+                $('#deletebutton').attr("disabled", "disabled");
+            } else {
+                $('#deletebutton').removeAttr("disabled");
+            }
+        }
+
+        //Enable or disable delete button
+        $('.checkboxfavorite').click(function () {
+            enableDeleteButton();
+        });
+
+        // Check or uncheck all items
+        $('#checkboxall').click(function () {
+            $('.checkboxfavorite').attr("checked", $(this).attr("checked"));
+            enableDeleteButton();
+        });
+
+        // Call delete action in controller
+        $("#deletebutton").click(function () {
+            if (isDeleting)
+                return;
+            isDeleting = true;
+
+            var idList = new Array();
+            //find all the checked checkboxes
+            $(".checkboxfavorite:checked").each(function() {
+                idList.push($(this).val());
+            });
+            $.ajax( {
+                type: "POST",
+                url: "@Url.Action("DeleteUserFavoriteRecipes", "Account")",
+                dataType: "html",
+                data: { ids: idList },
+                traditional: true,
+                success: function (data) {
+                    if (data == "Error")
+                        displayMessage("#delete-message", "Có lỗi xảy ra. Xóa công thức nấu ăn yêu thích không thành công.", "error");
+                    else {
+                        $("#favorite-list").html(data);
+                        displayMessage("#delete-message", "Công thức nấu ăn yêu thích đã được xóa.", "success");
+                    }
+                },
+                error: function(err, result)
+                {
+                alert(err.responseText);
+                },
+                complete: function() {
+                    isDeleting = false;
+                }
+            });
+        });
+    }); 
+</script>

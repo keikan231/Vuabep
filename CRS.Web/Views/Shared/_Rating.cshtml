@@ -1,0 +1,20 @@
+﻿@model CRS.Web.Models.Rating
+<ul class="rating">
+    @for (int i = 1; i <= Model.MaxRate; i++)
+    {
+        string icon;
+        if (i <= Model.Average) {
+            icon = "star_full.png";
+        } else if (i - Model.Average <= 0.25) {
+            icon = "star_full.png";
+        } else if (i - Model.Average <= 0.75) {
+            icon = "star_half.png";
+        } else { 
+            icon = "star_empty.png";
+        }
+        <li>
+            <img class="rating@(Model.AllowRating ? " allow-rate" : "")" src="@Url.Content("~/Content/images/main/" + icon)" alt="@i"
+                title="@(Model.AllowRating ? "click để đánh giá" : "đánh giá")" />
+        </li>
+    }
+</ul>

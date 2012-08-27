@@ -1,0 +1,24 @@
+﻿@{
+    Layout = null;
+}
+@model IList<Question>
+@if (Model != null)
+{
+    if (Model.Count == 0)
+    {
+    <div>
+        Không có câu hỏi nào
+    </div>
+    }
+    else
+    {
+    <ul class="menunav">
+        @for (var i = 0; i < Model.Count; i++)
+        {
+            var item = Model[i];
+            <li class="@(i == Model.Count - 1 ? "last" : "")">@Html.QuestionLink(item.Id, item.Title.Truncate(40), item.TitleUrl, new { @title = item.Title })
+            </li>
+        }
+    </ul>
+    }
+}

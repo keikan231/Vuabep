@@ -1,0 +1,8 @@
+@charset "utf-8";
+/* CSS Document */
+/*
+#divAdBalloonAds{overflow:hidden; position:fixed; bottom:0; z-index:9900; display:none;}
+*/
+#divAdBalloonAds{overflow:hidden; position:fixed; bottom:250px; z-index:999999999 !important; display:none;}
+#divAdBalloonAdsT{overflow:hidden; position:fixed; bottom:250px; z-index:999999999 !important; display:none;}
+#divAdBalloonAdsB{overflow:hidden; position:fixed; bottom:250px; z-index:999999999 !important; display:none;}

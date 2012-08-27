@@ -1,0 +1,174 @@
+#autocomplete {
+    border: 1px solid;
+    overflow: hidden;
+    position: absolute;
+    z-index: 100;
+}
+#autocomplete ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+#autocomplete li {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #000000;
+    cursor: default;
+    white-space: pre;
+}
+html.js input.form-autocomplete {
+    background-image: url("../../images/main/throbber.gif");
+    background-position: 100% 2px;
+    background-repeat: no-repeat;
+}
+html.js input.throbbing {
+    background-position: 100% -18px;
+}
+html.js fieldset.collapsed {
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    height: 1em;
+}
+html.js fieldset.collapsed .fieldset-wrapper {
+    display: none;
+}
+fieldset.collapsible {
+    position: relative;
+}
+fieldset.collapsible .fieldset-legend {
+    display: block;
+}
+.form-textarea-wrapper textarea {
+    -moz-box-sizing: border-box;
+    display: block;
+    margin: 0;
+    width: 100%;
+}
+.resizable-textarea .grippie {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: url("../../images/main/grippie.png") no-repeat scroll center 2px #EEEEEE;
+    border-color: #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+    border-style: solid;
+    border-width: 0 1px 1px;
+    cursor: s-resize;
+    height: 9px;
+    overflow: hidden;
+}
+body.drag {
+    cursor: move;
+}
+.draggable a.tabledrag-handle {
+    cursor: move;
+    float: left;
+    height: 1.7em;
+    margin: -0.4em 0 -0.4em -0.5em;
+    padding: 0.42em 1.5em 0.42em 0.5em;
+    text-decoration: none;
+}
+a.tabledrag-handle:hover {
+    text-decoration: none;
+}
+a.tabledrag-handle .handle {
+    background: url("../../images/main/draggable.png") no-repeat scroll 0 0 transparent;
+    height: 13px;
+    margin-top: 4px;
+    width: 13px;
+}
+a.tabledrag-handle-hover .handle {
+    background-position: 0 -20px;
+}
+div.indentation {
+    float: left;
+    height: 1.7em;
+    margin: -0.4em 0.2em -0.4em -0.4em;
+    padding: 0.42em 0 0.42em 0.6em;
+    width: 20px;
+}
+div.tree-child {
+    background: url("../../images/main/tree.png") no-repeat scroll 11px center transparent;
+}
+div.tree-child-last {
+    background: url("../../images/main/tree-bottom.png") no-repeat scroll 11px center transparent;
+}
+div.tree-child-horizontal {
+    background: url("../../images/main/tree.png") no-repeat scroll -11px center transparent;
+}
+.tabledrag-toggle-weight-wrapper {
+    text-align: right;
+}
+table.sticky-header {
+    background-color: #FFFFFF;
+    margin-top: 0;
+}
+.progress .bar {
+    background-color: #FFFFFF;
+    border: 1px solid;
+}
+.progress .filled {
+    background-color: #000000;
+    height: 1.5em;
+    width: 5px;
+}
+.progress .percentage {
+    float: right;
+}
+.progress-disabled {
+    float: left;
+}
+.ajax-progress {
+    float: left;
+}
+.ajax-progress .throbber {
+    background: url("../../images/main/throbber.gif") no-repeat scroll 0 -18px transparent;
+    float: left;
+    height: 15px;
+    margin: 2px;
+    width: 15px;
+}
+tr .ajax-progress .throbber {
+    margin: 0 2px;
+}
+.ajax-progress-bar {
+    width: 16em;
+}
+.container-inline div, .container-inline label {
+    display: inline;
+}
+.container-inline .fieldset-wrapper {
+    display: block;
+}
+.nowrap {
+    white-space: nowrap;
+}
+html.js .js-hide {
+    display: none;
+}
+.element-hidden {
+    display: none;
+}
+.element-invisible {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+}
+.element-invisible.element-focusable:active, .element-invisible.element-focusable:focus {
+    clip: auto;
+    position: static !important;
+}
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+* html .clearfix {
+    height: 1%;
+}
+:first-child + html .clearfix {
+    min-height: 1%;
+}

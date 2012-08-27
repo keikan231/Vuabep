@@ -1,0 +1,82 @@
+﻿@using CRS.Business.Models
+<ul class="section-nav">
+    @if (Model.Content != "recipes")
+    {
+        <li class="current">
+            @Html.ActionLink("Mới nhất", "Index", "Home", null, null, "recipes", new { sort = "recent", content = "recipes" }, new { @class = "active" })
+        </li>
+        <li>@Html.ActionLink("Lượt xem", "Index", "Home", null, null, "recipes", new { sort = "views", content = "recipes" }, new { @class = "active" })
+        </li>
+        <li>
+            @Html.ActionLink("Bình luận", "Index", "Home", null, null, "recipes", new { sort = "comments", content = "recipes" }, new { @class = "active" })
+        </li>
+        <li>
+            @Html.ActionLink("Đánh giá", "Index", "Home", null, null, "recipes", new { sort = "rates", content = "recipes" }, new { @class = "active" })
+        </li>
+        <li>
+            @Html.ActionLink("Chứng nhận", "Index", "Home", null, null, "recipes", new { sort = "approval", content = "recipes" }, new { @class = "active" })
+        </li>
+    }
+    else
+    {
+        if (Model.OrderBy == Order.Recent)
+        {
+        <li class="current">
+            @Html.ActionLink("Mới nhất", "Index", "Home", null, null, "recipes", new { sort = "recent", content = "recipes" }, new { @class = "active" })
+        </li>
+        }
+        else
+        { 
+        <li>
+            @Html.ActionLink("Mới nhất", "Index", "Home", null, null, "recipes", new { sort = "recent", content = "recipes" }, new { @class = "active" })
+        </li>
+        }
+        if (Model.OrderBy == Order.Views)
+        {
+        <li class="current">
+            @Html.ActionLink("Lượt xem", "Index", "Home", null, null, "recipes", new { sort = "views", content = "recipes" }, new { @class = "active" })
+        </li>
+        }
+        else
+        { 
+        <li>@Html.ActionLink("Lượt xem", "Index", "Home", null, null, "recipes", new { sort = "views", content = "recipes" }, new { @class = "active" })
+        </li>
+        }
+        if (Model.OrderBy == Order.Comments)
+        {
+        <li class="current">
+            @Html.ActionLink("Bình luận", "Index", "Home", null, null, "recipes", new { sort = "comments", content = "recipes" }, new { @class = "active" })
+        </li>
+        }
+        else
+        { 
+        <li>
+            @Html.ActionLink("Bình luận", "Index", "Home", null, null, "recipes", new { sort = "comments", content = "recipes" }, new { @class = "active" })
+        </li>
+        }
+        if (Model.OrderBy == Order.Rates)
+        {
+        <li class="current">
+            @Html.ActionLink("Đánh giá", "Index", "Home", null, null, "recipes", new { sort = "rates", content = "recipes" }, new { @class = "active" })
+        </li>
+        }
+        else
+        { 
+        <li>
+            @Html.ActionLink("Đánh giá", "Index", "Home", null, null, "recipes", new { sort = "rates", content = "recipes" }, new { @class = "active" })
+        </li>
+        }
+         if (Model.OrderBy == Order.Approval)
+        {
+        <li class="current">
+            @Html.ActionLink("Chứng nhận", "Index", "Home", null, null, "recipes", new { sort = "approval", content = "recipes" }, new { @class = "active" })
+        </li>
+        }
+         else
+         { 
+        <li>
+            @Html.ActionLink("Chứng nhận", "Index", "Home", null, null, "recipes", new { sort = "approval", content = "recipes" }, new { @class = "active" })
+        </li>
+         }
+    }
+</ul>

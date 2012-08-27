@@ -1,0 +1,66 @@
+﻿@using CRS.Web.Models;
+@using CRS.Web.Framework.Security;
+<div id="mainmenu">
+    <ul id="nav">
+        @foreach (var parent in HeaderMenuCollection.Items)
+        {
+            bool isParentSelected = parent.Name == ViewBag.MenuName;
+            if (parent.Name != "Recipes" && parent.Name != "Tips")
+            {
+            <li class="@(isParentSelected ? "active" : "")">
+                @Html.ActionLink(parent.Text, parent.Action, parent.Controller)
+                <ul>
+                    @foreach (var child in parent.Children)
+                    {                            
+                        <li>
+                            @Html.ActionLink(child.Text, child.Action, child.Controller)
+                        </li>
+                    }
+                </ul>
+            </li>
+            }
+            else if (parent.Name == "Tips")
+            {
+            <li class="@(isParentSelected ? "active" : "")" id="nav-recipes">
+                @Html.ActionLink(parent.Text, parent.Action, parent.Controller)
+                <ul>
+                    @foreach (var child in parent.Children)
+                    {                            
+                        <li>
+                            @Html.ActionLink(child.Text, child.Action, child.Controller)
+                        </li>
+                    }
+                </ul>
+                <div class="tip-drop-down">
+                    <ul class="categories">
+                        @Html.Action("HeaderTipCategory", "Statistics")
+                    </ul>
+                </div>
+            </li>
+            }
+            else if(parent.Name == "Recipes")
+            {
+            <li class="@(isParentSelected ? "active" : "")" id="nav-recipes">
+                @Html.ActionLink(parent.Text, parent.Action, parent.Controller)
+                <ul>
+                    @foreach (var child in parent.Children)
+                    {                            
+                        <li>
+                            @Html.ActionLink(child.Text, child.Action, child.Controller)
+                        </li>
+                    }
+                </ul>
+                <div class="drop-down">
+                    <ul class="categories">
+                        @Html.Action("HeaderRecipeCategory", "Statistics")
+                    </ul>
+                </div>
+            </li>
+            }
+        }
+        @if (SecurityHelper.CurrentUser != null && SecurityHelper.CurrentUser.HasPermission(CRS.Business.Models.KeyObject.Permission.ViewAdminPages))
+        { 
+            <li>@Html.ActionLink("Admin", "Index", "AdminHome", new { area = "Admin" }, null)</li>
+        }
+    </ul>
+</div>

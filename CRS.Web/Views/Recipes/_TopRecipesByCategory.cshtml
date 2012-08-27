@@ -1,0 +1,10 @@
+﻿@model CRS.Web.ViewModels.Recipes.RecipeDetailsViewModel
+<div class="boxnav">
+    <h2 class="title">
+        Công thức cùng chuyên mục</h2>
+    <div class="boxnavcontent">
+        <div id="topviews">
+            @Html.Action("TopRecipesByCategory", "Statistics", new {id = Model.Recipe.MappingCategoryId})
+        </div>
+    </div>
+</div>

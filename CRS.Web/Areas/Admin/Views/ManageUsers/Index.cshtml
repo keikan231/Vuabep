@@ -1,0 +1,50 @@
+﻿@if (false)
+{
+    // Just use this script to enable jQuery intellisense in Visual Studio. Never render to real HTML.
+    <script src="/Scripts/jquery-1.5.1-vsdoc.js" type="text/javascript"></script>
+}
+@using CRS.Web.Models
+@model CRS.Web.Areas.Admin.ViewModels.ManageUsers.ListUserViewModel
+@{
+    ViewBag.Title = "Manage Users";
+    ViewBag.MenuGroup = "Users";
+    ViewBag.MenuName = "ManageUsers";
+    ViewBag.PageHeader = "Manage Users";
+}
+@Html.ValidationSummary(true, ValidationMessages.Summary)
+@using (Html.BeginForm("Index", "ManageUsers", FormMethod.Get))
+{
+    <div class="input">
+        <div>
+            @Html.ValidationMessageFor(m => m.UsernameSearch)
+        </div>
+        <p>
+            <label class="filter-label">
+                Search Username:</label>
+            @Html.TextBoxFor(m => m.UsernameSearch, new { name = "usernameSearch" })
+            <button type="submit">
+                Search</button>
+        </p>
+    </div>   
+}
+@(Html.Telerik().Grid(Model.Users)
+           .Name("Users")
+           .DataKeys(dataKeys => dataKeys.Add(c => c.Id))
+           .Columns(columns =>
+           {
+               columns.Template(
+                  @<text>
+<img alt="@item.Username " src="@Url.UserAvatar(item, ImageType.Thumbnail)" class="user-small-avatar"/>
+</text>
+               ).Width("65px").Title("Avatar");
+               columns.Template(o => @Html.ActionLink(o.Username, "Details", new { id = o.Id })).Width("200px").Title("Username");
+               columns.Bound(o => o.Email).Title("Email").Width("250px");
+               columns.Bound(o => o.Point).Width("100px");
+               columns.Bound(o => o.UserState.Name).Title("User State");
+               columns.Bound(o => o.LastLogin).Format("{0:dd/MM/yyyy HH:mm}");
+               columns.Bound(o => o.CreatedDate).Format("{0:dd/MM/yyyy HH:mm}");
+           })
+          .Pageable(pager => pager.PageSize(AppConfigs.DefaultAdminGridPageSize))
+          .Sortable()
+          .Scrollable(scrolling => scrolling.Enabled(true).Height(350))
+)

@@ -1,0 +1,45 @@
+﻿@model CRS.Web.Areas.Admin.ViewModels.ManageRoles.InsertRoleViewModel
+@Html.ValidationSummary(true, ValidationMessages.Summary)
+<div class="content-box">
+    <div class="content-box-header">
+        <h3>
+            Role information</h3>
+    </div>
+    <div class="content-box-content">
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(m => m.Role.Id)
+                                  
+            <div class="input">
+                <p class="required">
+                    @Html.LabelFor(m => m.Role.Name)                    
+                    @Html.TextBoxFor(m => m.Role.Name, new { @class = "text-input small-input" })
+                    @Html.ValidationMessageFor(m => m.Role.Name)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.Role.Description)
+                    @Html.TextBoxFor(m => m.Role.Description, new { @class = "text-input small-input" })
+                    @Html.ValidationMessageFor(m => m.Role.Description)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.Permission)
+                </p>
+                <ul class="checkbox-list">
+                    @for (int i = 0; i < Model.Permission.Count; i++)
+                    {
+                        <li>
+                            @Html.CheckBoxFor(m => m.Permission[i].IsChecked)
+                            @Html.LabelFor(m => m.Permission[i].IsChecked, Model.Permission[i].Permission.Name)
+                            @Html.HiddenFor(m => Model.Permission[i].Permission.Id)
+                            @Html.HiddenFor(m => Model.Permission[i].Permission.Name)
+                        </li>
+                    }
+                </ul>
+                <p class="buttons">
+                    @Html.Partial("_SaveButton")
+                    @Html.Partial("_CancelButton", new CRS.Web.Models.ActionInfo("Cancel", "Index"))
+                </p>
+            </div>
+        }
+    </div>
+</div>

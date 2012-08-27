@@ -1,0 +1,77 @@
+﻿@model CRS.Web.ViewModels.Tips.InsertTipViewModel
+@using CRS.Resources
+@using CRS.Web.Helpers
+@using CRS.Common
+<script type="text/javascript" src="@Url.Content("~/Scripts/ckeditor/ckeditor.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/ckfinder/ckfinder.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/ckeditor/adapters/jquery.js")"></script>
+<div class="content-wrapper">
+    @using (Html.BeginForm((Model.Tip.Id == 0 ? "Create" : "Edit"), "Tips", FormMethod.Post, new { enctype = "multipart/form-data", @class = "node-form node-recipe-form" }))
+    {
+        @Html.HiddenFor(m => m.Tip.Id)
+        <div class="form-item form-type-textfield form-item-title">
+            @Html.LabelFor(m => m.Tip.Title)
+            @Html.TextBoxFor(m => m.Tip.Title, new { @id = "edit-title", @class = "wide hint form-text required", @maxlength = "255", @size = "60" })
+            @Html.ValidationMessageFor(m => m.Tip.Title)
+        </div>
+            
+        <div id="edit-field-thoi-gian" class="field-type-list-text field-name-field-thoi-gian field-widget-options-select form-wrapper">
+            <div class="form-item form-type-select form-item-field-thoi-gian-und">
+                @Html.LabelFor(m => m.Tip.TipCategoryId)
+                @Html.DropDownListFor(m => m.Tip.TipCategoryId, new SelectList(Model.TipCategories, "Id", "Name"), " - Chọn chuyên mục - ", new { id = "parentCmb" })
+                @Html.ValidationMessageFor(m => m.Tip.TipCategoryId)
+            </div>
+        </div>
+            
+        <div id="edit-field-hinh-chinh" class="field-type-image field-name-field-hinh-chinh field-widget-image-image form-wrapper">
+            <div id="edit-field-hinh-chinh-und-0-ajax-wrapper">
+                <div class="form-item form-type-managed-file form-item-field-hinh-chinh-und-0">
+                    @Html.LabelFor(m => m.Tip.ImageUrl)
+                    <div id='image-process'>
+                        @Html.Partial("_UploadImage", Model)
+                    </div>
+                </div>
+            </div>
+        </div>          
+            
+        <div id="edit-field-mo-ta" class="field-type-text-long field-name-field-mo-ta field-widget-textarea-extra-count form-wrapper">
+            <div id="field-mo-ta-add-more-wrapper">
+                @Html.LabelFor(m => m.Tip.ContentText)
+                <div class="form-textarea-wrapper">
+                    @Html.TextAreaFor(m => m.Tip.ContentText, new { @id = "edit-field-mo-ta-und-0-value", @class = "hint wide form-textarea required", @rows = "3" })
+                    @Html.ValidationMessageFor(m => m.Tip.ContentText)
+                </div>
+            </div>
+        </div>
+                    
+        @Html.LabelFor(m => m.Tip.ContentHtml)
+        <div style="margin: 0.5em 0 0.5em 0;">
+            @Html.TextAreaFor(m => m.Tip.ContentHtml, new { @id = "tip-ckeditor" })
+            @Html.ValidationMessageFor(m => m.Tip.ContentHtml)
+        </div>
+        <div>
+            <input class="submitbutton" type="submit" value="@(Model.Tip.Id == 0 ? "Gửi" : "Lưu")" />
+            <a class="submitbutton" type="submit" href="@(Model.Tip.Id == 0 ? Url.Action("Index", "Tips") : Url.TipLink(Model.Tip.Id, Model.Tip.TitleUrl))">
+                Bỏ qua</a>
+        </div>
+           
+    }
+</div>
+<script type="text/javascript">
+     CKEDITOR.replace('tip-ckeditor',
+    {
+    filebrowserImageBrowseUrl: '/Scripts/ckfinder/ckfinder.html?type=Images',
+    filebrowserImageUploadUrl: '/Scripts/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+    });
+
+    $(document).ready(function () {
+        $("#delete-image").click(function (e) {
+            if (!confirm("Bạn có chắc muốn xóa hình ảnh này không?")) {
+                return false;
+            }
+            else {
+            $("#image-process").load("@Html.Raw(Url.Action("DeleteImage", "Tips", new { tipId = Model.Tip.Id }))");
+            }
+        });
+    });
+</script>

@@ -1,0 +1,62 @@
+﻿@using CRS.Business.Models
+<ul class="section-nav">
+    @if (Model.OrderBy == Order.Recent)
+    {
+        <li class="current">
+            @Html.ActionLink("Mới nhất", "RecipeCategoryIndex", "Recipes", new { sort = "recent" }, new { @class = "active" })
+        </li>
+    }
+    else
+    { 
+        <li>
+            @Html.ActionLink("Mới nhất", "RecipeCategoryIndex", "Recipes", new { sort = "recent" }, new { @class = "active" })
+        </li>
+    }
+    @if (Model.OrderBy == Order.Views)
+    {
+        <li class="current">
+            @Html.ActionLink("Lượt xem", "RecipeCategoryIndex", "Recipes", new { sort = "views" }, new { @class = "active" })
+        </li>
+    }
+    else
+    { 
+        <li>@Html.ActionLink("Lượt xem", "RecipeCategoryIndex", "Recipes", new { sort = "views" }, new { @class = "active" })
+        </li>
+    }
+    @if (Model.OrderBy == Order.Comments)
+    {
+        <li class="current">
+            @Html.ActionLink("Bình luận", "RecipeCategoryIndex", "Recipes", new { sort = "comments" }, new { @class = "active" })
+        </li>
+    }
+    else
+    { 
+        <li>
+            @Html.ActionLink("Bình luận", "RecipeCategoryIndex", "Recipes", new { sort = "comments" }, new { @class = "active" })
+        </li>
+    }
+    @if (Model.OrderBy == Order.Rates)
+    {
+        <li class="current">
+            @Html.ActionLink("Đánh giá", "RecipeCategoryIndex", "Recipes", new { sort = "rates" }, new { @class = "active" })
+        </li>
+    }
+    else
+    { 
+        <li>
+            @Html.ActionLink("Đánh giá", "RecipeCategoryIndex", "Recipes", new { sort = "rates" }, new { @class = "active" })
+        </li>
+    }
+    @if (Model.OrderBy == Order.Approval)
+         {
+        <li class="current">
+            @Html.ActionLink("Chứng nhận", "RecipeCategoryIndex", "Recipes", new { sort = "approval" }, new { @class = "active" })
+        </li>
+         }
+         else
+         { 
+        <li>
+            @Html.ActionLink("Chứng nhận", "RecipeCategoryIndex", "Recipes", new { sort = "approval" }, new { @class = "active" })
+        </li>
+         }
+    <ul>

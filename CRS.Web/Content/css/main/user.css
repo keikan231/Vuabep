@@ -1,0 +1,78 @@
+#user-header {padding:10px 20px 10px 20px; margin:0 5px; overflow:hidden;border-bottom:1px solid #e8e0c6;     }   
+#user-nav {width: 718px;}
+#user-nav li {float:left;}
+#user-nav li {float:left;background:url(../../images/main/sub-nav.png) top right; margin-left:5px;}
+#user-nav li:first-child {margin-left:0;}
+#user-nav li a {display:block; padding:5px 0 5px 20px; margin-right:20px; height:20px; background:url(../../images/main/sub-nav.png) top left; color:#fff;}
+#user-nav li.current,#user-nav li:hover { background:url(../../images/main/sub-nav-active.png) top right;}
+#user-nav li.current a,#user-nav li:hover a{background:url(../../images/main/sub-nav-active.png) top left; color:#008b9a;}   
+
+.big-avatar {display:block;width:100px; height:100px; background:#fff; border:1px solid #d0cab8; padding:3px;float:left; margin-right:20px;}         
+#status-update textarea {padding:9px; border:1px solid #7aaaac;background:#f5feff;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; color:#7ca5a6; width:500px; max-height:96px; overflow:auto;}      
+.user-meta {width:540px; float:left;margin-left:10px;}
+
+#user-header .picture-home .status-friend{	
+	margin-top: 5px;	
+	}
+	
+#user-header .picture-home{
+	float: left;
+	width: 110px;
+	}	
+	
+.emotions-avatar{
+	float: right;
+	}	
+
+.emotions-wrapper{
+	/*margin:-20px 0 0 400px;
+	position:absolute;
+	border: 1px solid;*/
+	display: block !important;
+	float: right;
+	
+	}
+	
+/*
+	Them ngay 7/6 - hieu ung hover icon smileys
+*/
+
+.iconhover div img {
+	display: inline;
+	height: 18px;
+	position: relative;
+	/*z-index: 99999;*/
+	cursor:pointer;
+	margin:0 5px 5px 0;
+}
+
+.iconhover div { /* all list items */
+	float: right;
+	height: 18px;
+	width: 18px;
+	*margin-bottom: -20px;
+}
+
+.iconhover div p { /* second-level lists */
+	display: none; 
+	background: #fff;
+	border:#ccc 1px solid;
+	width:320px;
+	position: absolute; 
+	margin-top:18px;
+}
+.iconhover div p span {float:left; width:40px; height:18px; text-align:center; padding:3px 0;}
+
+.iconhover div:hover p, #iconhover div.hover p { /* lists nested under hovered list items */
+	left: 345px;
+	display: block;
+	cursor:pointer;
+}
+#comment-form .iconhover div {margin:15px 0px -22px 0; }
+.iconhover div {float:right; height:18px; margin:16px 90px -38px 13px; width:18px; }
+#blog-node-form .iconhover div {margin:35px 38px -21px 13px; }
+#forum-node-form .iconhover div {margin:36px 38px -22px 13px; }
+/*new*/
+#user-nav {margin-left:-10px;}
+.user-meta {float:none; overflow:hidden; width:auto}
+#user-header .picture-home {margin-right:10px;}

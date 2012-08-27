@@ -1,0 +1,47 @@
+div.messages {
+    background-position: 8px 8px;
+    background-repeat: no-repeat;
+    border: 1px solid;
+    margin: 6px 0;
+    padding: 10px 10px 10px 50px;
+}
+div.status {
+    background-image: url("../../images/main/message-24-ok.png");
+    border-color: #BBEE77;
+}
+div.status, .ok {
+    color: #234600;
+}
+div.status, table tr.ok {
+    background-color: #F8FFF0;
+}
+div.warning {
+    background-image: url("../../images/main/message-24-warning.png");
+    border-color: #EEDD55;
+}
+div.warning, .warning {
+    color: #884400;
+}
+div.warning, table tr.warning {
+    background-color: #FFFCE5;
+}
+div.error {
+    background-image: url("../../images/main/message-24-error.png");
+    border-color: #ED541D;
+}
+div.error, .error {
+    color: #8C2E0B;
+}
+div.error, table tr.error {
+    background-color: #FEF5F1;
+}
+div.error p.error {
+    color: #333333;
+}
+div.messages ul {
+    margin: 0 0 0 1em;
+    padding: 0;
+}
+div.messages ul li {
+    list-style-image: none;
+}

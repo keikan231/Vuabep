@@ -1,0 +1,16 @@
+.section-headline { margin-bottom: 10px; }
+.forum-list { padding: 0; margin-top: 0; margin-bottom: 0; }
+ol.forum-list-posts li.forum-post-title div h2 { line-height: 1.4em; margin-bottom: 0; }
+.forum-list dd div.small-avatar { width: auto; }
+/*div.vertical-tabs { display: none; }*/
+form.node-forum-form div.form-actions {  }
+form.node-forum-form div.form-actions input.form-submit { border: none; width:202px; margin: 10px auto 0; text-transform: uppercase; height:50px; overflow: visible; text-align: center; display: block; background: url(../../images/main/sprite.png) -448px -500px; font: bold 18px Arial, Verdana, sans-serif; color: #fff; }
+form.node-forum-form div.form-actions input.form-submit {width:123px;height:26px; line-height:26px; text-indent:1px; text-align:center; margin:10px 0 0 0 ; background-position:-448px -650px; font-size:11px ; }
+form.node-forum-form div.form-item-shadow { display: none; }
+
+form.node-forum-form div#edit-actions input#edit-submit { float: left; }
+form.node-forum-form div#edit-actions input#edit-delete { float: right; }
+
+div#left-body div#forum div.add-forum2 { float: left; margin-left: 30px; }
+
+div.node-forum div.content ul.user-actions { margin-top: 10px; }

@@ -1,0 +1,42 @@
+﻿@model CRS.Web.ViewModels.Account.UserRecipeViewModel
+@using CRS.Web.Models
+@if (Model != null)
+{
+    <div class="profile-padd user-friend">
+        @if (Model.Recipes.Count == 0)
+        {
+            <h2 class="title">
+                Chưa đóng góp công thức nấu ăn nào
+            </h2>
+        }
+        else
+        {
+            <h2 class="title">
+                Đã đóng góp @Model.Total công thức nấu ăn
+            </h2>
+            <ul class="recipe-list handbook">
+                @foreach (var item in Model.Recipes)
+                {    
+                    <li class="@(Model.Recipes.Count - 1 == Model.Recipes.IndexOf(item) ? "last" : "")">
+                        @Html.RecipeImageActionLink("Recipes", @Url.ShowImage(item.ImageUrl, ImageType.Thumbnail), item.Title, item.Id, item.Title, item.TitleUrl, null, new { @class = "recipe-thumb" })
+                        <div class="recipe-summary">
+                            <h2 property="dc:title" datatype="">
+                                @Html.RecipeLink(item.Id, item.Title.Truncate(40), item.TitleUrl)</h2>
+                            <span class="meta">@item.Views lượt xem - @item.PostedDate.AgoString() </span>
+                            <p class="desc">
+                                @item.ContentText</p>
+                            <div class="recipe-rating">
+                                @{Rating r = new Rating(item.RateTimes, item.TotalRates);}
+                                Đánh giá: @Html.Partial("_Rating", r) (<span class="rate-score">@Math.Round(r.Average, 2)</span>
+                                điểm / <span class="rate-score">@r.RateTimes.ToString("n0")</span> lượt đánh giá)
+                            </div>
+                            <ul class="user-actions">
+                                <li class="user-comment" title="@(item.Comments) bình luận">@item.Comments bình luận</li>
+                            </ul>
+                        </div>
+                    </li>       
+                }
+            </ul>
+        }
+    </div>
+}

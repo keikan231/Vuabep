@@ -1,0 +1,273 @@
+﻿@model CRS.Web.ViewModels.Recipes.RecipeDetailsViewModel
+@using CRS.Business.Models.Entities
+@using CRS.Web.ViewModels.Recipes
+@using CRS.Web.Models
+@using CRS.Web.Helpers
+@using CRS.Common.Helpers
+@using CRS.Resources
+@Html.ValidationSummary(true, ValidationMessages.Summary)
+@Html.Partial("_Message")
+@{
+    var title = Model.CurrentUserId == 0 ? ". Bạn phải đăng nhập để sử dụng chức năng này" : "";
+}
+@{
+    ViewBag.Title = Model.Recipe.Title;
+    ViewBag.MenuName = "Recipes";    
+}
+@section Right
+{
+    <div id="block-b_page-taxonomy-children-list" class="block block-b-page box">
+        <h2 class="box-headline">
+            @Model.Categories[0].Item2</h2>
+        <div class="box-content">
+            <ul>
+                @for (int i = 2; i < Model.Categories.Count; i++)
+                {
+                    <li>@Html.RecipeSmallCategoryLink(Model.Categories[i].Item2, Model.Categories[0].Item1, Model.Categories[i].Item1, Model.Categories[i].Item2)</li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+<div class="content-wrapper">
+    <ul id="breadcrum">
+        <li id="crum-home"><a href="@Url.Action("Index", "Home")">Trang chủ</a> </li>
+        <li><a href="@Url.Action("Index", "Recipes")">Công thức nấu ăn</a> </li>
+        <li>@Html.RecipeCategoryLink(Model.Categories[0].Item2, Model.Categories[0].Item1, Model.Categories[0].Item2)
+        </li>
+        <li class="current">@Html.RecipeSmallCategoryLink(Model.Categories[1].Item2, Model.Categories[0].Item1, Model.Categories[1].Item1, Model.Categories[1].Item2)
+        </li>
+    </ul>
+</div>
+<div class="section-headline">
+    <div class="section-headline-content">
+        <h1 title="@Model.Recipe.Title">
+            @Model.Recipe.Title.Truncate(80)
+        </h1>
+    </div>
+</div>
+<div class="content-wrapper">
+    <div id="node-7744" class="node node-recipe node-promoted" about="#" typeof="sioc:Item foaf:Document">
+        <div id="meta-box">
+            <ul class="user-actions bor-bot action-article">
+                <li class="user-date-post"><span>@Model.Recipe.Views lượt xem - @Model.Recipe.PostedDate.AgoString()
+                </span></li>
+                <!--begin social-->
+                <li class="user-share"><a id="various" href="#inline1">Chia sẻ</a></li>
+                <div style="display: none;">
+                    <div id="inline1">
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/social-facebook-box-blue-icon.png")" border="0px" /></a>&nbsp;
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/social-google-box-blue-icon.png")" border="0px" /></a>&nbsp;
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/Tumblr-icon.png")" border="0px" /></a> &nbsp;
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/Google-Plus-13-icon.png")" border="0px" /></a>
+                    </div>
+                </div>
+                <!--end social-->
+                <li class="user-handbook"><a id="add-favorite" class="add-handbook add-handbook-processed"
+                    rel="nofollow" href="#">Thêm vào sổ tay</a> </li>
+                <li class="user-fb-like">
+                    <fb:like href="#" show_faces="false" layout="button_count" width="85" action="like"
+                        font="verdana" colorscheme="light"></fb:like>
+                </li>
+                <li class="user-fb-like">
+                    <!-- Place this tag where you want the +1 button to render. -->
+                    <div class="g-plusone" data-size="medium">
+                </li>
+            </ul>
+            <div class="user-picture small-avatar">
+                <a href="@Url.UserLink(Model.Recipe.PostedBy.Id, Model.Recipe.PostedBy.Username)" title="Xem trang cá nhân">
+                    <img src="@Url.UserAvatarUrl(Model.Recipe.PostedBy.AvatarUrl, CRS.Web.Models.ImageType.Thumbnail)" alt="Ảnh đại diện" height="40px" width="40px" />
+                </a>
+            </div>
+            <div class="meta">
+                @Html.UserLink(Model.Recipe.PostedBy.Id, Model.Recipe.PostedBy.Username, new { @class = "username" })
+                <p class="level">
+                    @Model.Recipe.PostedBy.Level
+                </p>
+            </div>
+            <div class="meta-motivate" align="center">
+                <div class="recipe-rating">
+                    <div id="rate">
+                        @{ Rating r = new Rating(Model.Recipe.RateTimes, Model.Recipe.TotalRates) { AllowRating = true }; }
+                        @Html.Partial("_Rating", r)
+                        <p>@Math.Round(r.Average, 2) điểm / @r.RateTimes lượt đánh giá</p>
+                        <div id="rate-success-message">
+                        </div>
+                    </div>
+                    @if (Model.Recipe.IsApproved)
+                    {
+                        <div title="Chứng nhận bởi chuyên gia" class="detail-certificate">
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        @Html.Partial("_TopMappedTipsByCategory", Model)
+        <div align="center">
+            <img src="@Url.ShowImage(Model.Recipe.ImageUrl, CRS.Web.Models.ImageType.Big)" alt="@Model.Recipe.Title" class="recipe-medium imagefancy" />
+        </div>
+        <p class="desc">
+            @Model.Recipe.ContentText
+        </p>
+        <p>
+            <h2 class="sub-headline">
+                Nguyên liệu</h2>
+            @Html.Raw(Html.Encode(Model.Recipe.Ingredients).Replace("\n", "<br />"))
+        </p>
+        <h2 class="sub-headline">
+            Các bước thực hiện</h2>
+        <ul class="recipe-progress">
+            <li>
+                @Html.Raw(Model.Recipe.ContentHtml)
+            </li>
+        </ul>
+        @if (Model.CurrentUserId == Model.Recipe.PostedById || Model.CanEdit)
+        {
+            <a href="@Url.Action("Edit", "Recipes", routeValues: new { id = @Model.Recipe.Id })" class="edit-hyperlink">
+                Chỉnh sửa thông tin</a> 
+        }
+        <p>
+            <ul class="liststatiticdet">
+                @Html.Partial("_Report", new ReportModel(@Model.Recipe.Id, title, "Recipe"))
+            </ul>
+        </p>
+        <!-- All Comments -->
+        <div class="place-comments">
+            <div id="comments-container">
+                <h2 class="title">
+                    Có <span id="totalRecipeComment">@Model.Recipe.Comments</span> bình luận</h2>
+                <div class="loading">
+                    <img src="@Url.Content("~/Content/images/main/loading.gif")" />
+                </div>
+            </div>
+        </div>
+        @Html.Partial("_TopRecipesByCategory", Model)
+        @Html.Partial("_TopRecipes")
+    </div>
+</div>
+@Html.Partial("_ReportPopup")
+@Html.Partial("_UnauthorizedDialog")
+@section Script
+{
+    <script src="@Url.Content("~/Scripts/jquery-ui/jquery-ui-1.8.22.custom.min.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Scripts/jquery-ui/redmond/jquery-ui-1.8.22.custom.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript"> 
+        var recipeId = @Model.Recipe.Id;
+     isAuthenticated = @Request.IsAuthenticated.ToString().ToLower(); 
+     var isRating = false;
+     var isFavoriting = false;
+
+     $(document).ready(function () {
+
+    // Load comments 
+    $("#comments-container").load("@Html.Raw(Url.Action("List", "RecipeComments", new { recipeId = Model.Recipe.Id, total = Model.Recipe.Comments }))"); 
+
+    // Rate
+    $("img.rating").click(function (e) {
+    @if (Request.IsAuthenticated)
+    { 
+        <text>
+        if (isRating)
+            return;
+        isRating = true;
+        // Get rate value
+        var rate = $("img.rating").index(this) + 1;
+        $.ajax({
+            url: "@Url.Action("Rate", "Recipes")",
+            type: "POST",
+            dataType: "html",
+            data: {recipeId: recipeId, rate: rate},
+            success: function (dataX) {
+                var data = JSON.parse(dataX);
+                if (data.Success == false)
+                {
+                    if (data.Message == "NotAuthorized")
+                        showUnauthorizedMessage();
+                    else
+                        alert(data.Message);
+                }
+                else
+                {
+                    $("#rate p").html(data.Message);
+                    // update star icons
+                    var temp = $("img.rating");
+                    for (var i = 0; i < rate; i++)
+                    if(i==4)
+                    {
+                        for(var i = 0; i < 5; i++)
+                        {
+                            temp.eq(i).attr("src", "@Url.Content("~/Content/images/main/star_full_rated.png")");
+                        }
+                    }
+                    else{
+                        temp.eq(i).attr("src", "@Url.Content("~/Content/images/main/star_full.png")");
+                    }
+                    for (var i = rate; i < 5; i++)
+                        temp.eq(i).attr("src", "@Url.Content("~/Content/images/main/star_empty.png")");
+                    // Display message
+                    displayMessage("#rate-success-message", "Cảm ơn bạn đã đánh giá công thức nấu ăn này.", "success");
+                 }
+         },
+         error: function(err, result) {
+         alert(err.responseText);
+         },
+         complete: function() {
+         isRating = false;
+         }
+     });
+    </text>
+    }
+    else
+    { 
+        @:showUnauthorizedMessage();
+     }
+   });
+
+   // Add to favorite
+            $("#add-favorite").click(function (e) {
+                e.preventDefault();
+                @if (Request.IsAuthenticated)
+                {
+                    <text>
+                    if (isFavoriting)
+                        return;
+                    isFavoriting = true;
+                    $.ajax({
+                            url: "@Url.Action("AddToFavorite", "Recipes")",
+                            type: "POST",
+                            dataType: "html",
+                            data: {recipeId: recipeId},
+                            success: function (dataX) {
+                                var data = JSON.parse(dataX);
+                                if (data.Success == false)
+                                {
+                                    if (data.Message == "NotAuthorized")
+                                        showUnauthorizedMessage();
+                                    else
+                                        alert(data.Message);
+                                }
+                                else
+                                {
+                                // Display message
+                                    alert("Công thức nấu ăn đã được thêm vào sổ tay của bạn");                                                                                                     
+                                }
+                            },
+                            complete: function () {
+                             
+                            }
+                    });
+                    </text>
+                }
+                else
+                { 
+                    @:showUnauthorizedMessage();
+                }
+            });
+
+});
+    </script>
+}

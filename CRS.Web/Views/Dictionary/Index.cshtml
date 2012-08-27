@@ -1,0 +1,32 @@
+﻿@model CRS.Web.ViewModels.Words.ListWordsViewModel
+@using CRS.Web.Models
+@using CRS.Resources
+@{
+    ViewBag.Title = "Từ điển nguyên liệu vùng miền";
+    ViewBag.MenuName = "Words";
+}
+@Html.Partial("_Message")
+@Html.ValidationSummary(true, ValidationMessages.Summary)
+@if (Model != null)
+{    
+    <div class="section-headline">
+        <div class="section-headline-content">
+            <h2>
+                Từ điển nguyên liệu vùng miền
+            </h2>
+        </div>
+    </div>
+    if (Model.Words.Count > 0)
+    { 
+        <ul class="recipe-list">
+            @Html.Partial("_WordList", Model.Words)
+        </ul>
+    }
+    else
+    {
+    <div class="content-wrapper">
+        <h2 class="title">
+            Không có từ nào!</h2>
+    </div>
+    }
+}

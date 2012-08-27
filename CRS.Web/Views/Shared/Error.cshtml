@@ -1,0 +1,14 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+    ViewBag.Title = "Có lỗi xảy ra";
+}
+<div class="content-wrapper">
+    <div class="error-notification">
+    <div class ="error-content">
+        <h2>
+            Rất tiếc, đã có lỗi xảy ra !
+        </h2>
+        <span>Hãy @Html.ActionLink("vào đây", "Index", "Home") để quay lại trang chủ ! </span>
+        </div>
+    </div>
+</div>

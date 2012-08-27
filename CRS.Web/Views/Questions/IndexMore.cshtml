@@ -1,0 +1,11 @@
+﻿@model CRS.Web.ViewModels.Questions.ListQuestionViewModel
+@{
+    Layout = null;
+}
+@{
+    @Html.Partial("_QuestionList", Model.Questions)
+    if (Model.HasMore)
+    {
+        @Html.ActionLink("xem thêm", "Index", "Questions", new { page = Model.Page + 1 }, new { @class = "more", id = "more" })
+    }
+}

@@ -1,0 +1,54 @@
+﻿@model CRS.Web.ViewModels.Account.UserAnswerViewModel
+@using CRS.Web.Framework.Security;
+@using CRS.Common;
+<div class="profile-padd user-friend">
+    @if (Model.Total == 0)
+    {
+        <h2 class="title">
+            Chưa đóng góp câu trả lời nào</h2>
+    }
+    else
+    {
+        <h2 class="title">
+            Đã đóng góp @Model.Total câu trả lời</h2>
+        <table id="user-profile">
+            <tr>
+                <th scope="col">
+                    Câu hỏi
+                </th>
+                <th scope="col">
+                    Câu trả lời
+                </th>
+                <th scope="col">
+                    Thích
+                </th>
+                <th scope="col">
+                    Không thích
+                </th>
+                <th scope="col">
+                    Thời gian trả lời
+                </th>
+            </tr>
+            @foreach (var item in Model.Answers)
+            {
+                <tr>
+                    <td>
+                        @Html.QuestionLink(item.Question.Id, item.Question.Title, item.Question.TitleUrl)
+                    </td>
+                    <td>
+                        @item.ContentText
+                    </td>
+                    <td>
+                        @item.UpVotes
+                    </td>
+                    <td>
+                        @item.DownVotes
+                    </td>
+                    <td>
+                        @item.PostedDate.AgoString()
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+</div>

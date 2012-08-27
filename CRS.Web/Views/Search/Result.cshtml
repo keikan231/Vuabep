@@ -1,0 +1,109 @@
+﻿@using CRS.Web.Models
+@using CRS.Business.Models
+@model CRS.Web.ViewModels.Search.SearchResultViewModel
+@{
+    ViewBag.Title = "Kết quả tìm kiếm";
+    ViewBag.MenuName = "Search";
+}
+@Html.Partial("_SearchInput", Model.Input)
+@if (Model.NotFound)
+{
+    <div class="section-headline">
+        <div class="section-headline-content">
+            <h2>
+                Kết quả
+            </h2>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <h2 class="title">
+            Không tìm thấy bài viết nào!</h2>
+    </div>
+}
+else
+{
+    <div class="section-headline">
+        <div class="section-headline-content">
+            <h2>
+                Kết quả : @Model.Total bài viết
+            </h2>
+            @if (Model.Input.CategoryName == "news" || Model.Input.CategoryName == "all")
+            {
+                @Html.Partial("_NewsSort")
+            }
+            else if (Model.Input.CategoryName == "tips")
+            {
+                @Html.Partial("_TipSort")
+            }
+            else if (Model.Input.CategoryName == "recipes")
+            {
+                @Html.Partial("_RecipeSort")
+            }
+        </div>
+    </div>
+    <ul class="recipe-list">
+        @if (Model.Input.CategoryName == "news")
+        {
+            @Html.Partial("_NewsListShared", Model.News)
+        }
+        else if (Model.Input.CategoryName == "tips")
+        {
+            @Html.Partial("_TipListShared", Model.Tips)
+        }
+        else if (Model.Input.CategoryName == "recipes")
+        {
+            @Html.Partial("_RecipeListShared", Model.Recipes)
+        }
+        else if (Model.Input.CategoryName == "all")
+        {
+            @Html.Partial("_AllContentListShared", Model.All)
+        }
+        @if (Model.HasMore)
+        { 
+            @Html.ActionLink("xem thêm", "Result", "Search", new { page = (Model.Input.Page ?? 1) + 1, sort = Model.Input.Sort }, new { @class = "more", id = "more" })
+        }
+    </ul>
+    
+}
+@section Script
+{
+    @if (Model.HasMore)
+    {
+        <script type="text/javascript">
+    var isLoading = false;
+    var page = @(Model.Input.Page ?? 1);
+    $(document).ready(function () {
+        $("#more").live('click', function (e) {
+            e.preventDefault();
+            if (isLoading)
+                return false;
+            isLoading = true;
+            $(this).html("<img src='@Url.Content("~/Content/images/main/loading.gif")' />");
+            $.ajax( {
+                type: "POST",
+                url: "@Url.Action("ResultMore", "Search")",
+                dataType: "html",
+                data: { 
+                    nameUrl: "@Model.Input.NameUrl",
+                    categoryName: "@Model.Input.CategoryName",
+                    page: page + 1,
+                    sort: "@Model.Input.Sort"
+                },
+                success: function (data) {
+                    page++;
+                    // replace "more" button by new data
+                    $(".recipe-list .last").removeClass("last");
+                    $("#more").replaceWith(data);
+                },
+                error: function (data) {
+                    $("#more").html("có lỗi xảy ra, bạn hãy đợi một chút và thử lại");
+                },
+                complete: function() {
+                    isLoading = false;
+                }
+            });
+        });
+    });
+        </script>
+    }
+}

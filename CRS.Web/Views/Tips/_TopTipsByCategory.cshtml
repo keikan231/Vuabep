@@ -1,0 +1,10 @@
+﻿@model CRS.Web.ViewModels.Tips.TipDetailsViewModel
+<div class="boxnav">
+    <h2 class="title">
+        Mẹo vặt cùng chuyên mục</h2>
+    <div class="boxnavcontent">
+        <div id="topviews">
+            @Html.Action("TopTipsByCategory", "Statistics", new {id = Model.Tip.TipCategoryId})
+        </div>
+    </div>
+</div>

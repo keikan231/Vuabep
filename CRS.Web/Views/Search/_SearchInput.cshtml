@@ -1,0 +1,21 @@
+﻿@model CRS.Web.Models.Searching.SearchInput
+<div class="search-form">
+    @using (Html.BeginForm("QuickSearchParser", "Search", FormMethod.Post))
+    {
+        <fieldset id = "mini-search">
+            @Html.Partial("_Input", Model == null || Model.Name == null ? "Nhập từ khóa tìm kiếm" : Model.Name)
+            @Html.Partial("_CategoryInput", Model == null || Model.CategoryName == null ? string.Empty : Model.CategoryName)
+            <button id="mini-search-submit" class="uniform-processed">
+                Search</button>
+        </fieldset>
+    }
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#mini-search-submit").click(function (e) {
+            var keyword = $("#mini-search-field").val();
+            if (keyword == "" || keyword == "Nhập từ khóa tìm kiếm") // no value in text box
+                e.preventDefault();
+        });
+    });
+</script>

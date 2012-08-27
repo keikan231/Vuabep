@@ -1,0 +1,95 @@
+﻿@using CRS.Web.Framework.Security;
+@using CRS.Common.Helpers;
+<div class="region region-sidebar">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div id="block-b_page-hello-user" class="block block-b-page box">
+            <h2 class="box-headline">
+                Chào @Html.ActionLink(SecurityHelper.CurrentUser.UserInfo.Username.Truncate(20), "Profile", "Account", null, new { title = string.Format("{0} ({1})", SecurityHelper.CurrentUser.UserInfo.Username, SecurityHelper.CurrentUser.UserInfo.Email), @class = "username" })</h2>
+            <div class="box-content">
+                <div class="user-picture small-avatar">
+                    <a href="@Url.UserLink(SecurityHelper.CurrentUser.UserInfo.Id, SecurityHelper.CurrentUser.UserInfo.Username)" title="Trang cá nhân">
+                        <img src="@Url.UserAvatarUrl(SecurityHelper.CurrentUser.UserInfo.AvatarUrl, CRS.Web.Models.ImageType.Thumbnail)" alt="Ảnh đại diện" height="50px" width="50px" class="small-imgavatar"/>
+                    </a>
+                </div>
+                <ul class="my-info">
+                    <li id="user-edit">@Html.ActionLink("Thông tin của bạn", "Profile", "Account")</li>
+                    <li id="user-message">@Html.ActionLink("Điểm đóng góp: " + @SecurityHelper.CurrentUser.UserInfo.Point, "Profile", "Account")</li>
+                    <li id="user-request">@Html.ActionLink("Đổi mật khẩu", "ChangePassword", "Account")</li>
+                    <li id="user-logout">@Html.ActionLink("Thoát", "Logout", "Account")</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id="block-b_page-user-add-article" class="block block-b-page box">
+            <div class="box-content">
+                <ul class="info-user-list sidebar-right">
+                    <li class="user-add-text">@Html.ActionLink("Gửi công thức", "Create", "Recipes")
+                    </li>
+                    <li class="user-add-photo">@Html.ActionLink("Gửi mẹo vặt", "Create", "Tips")</li>
+                    <li class="user-add-forum">@Html.ActionLink("Gửi tin tức", "Create", "News")</li>
+                    <li class="user-add-record">@Html.ActionLink("Gửi câu hỏi", "Create", "Questions")</li></ul>
+            </div>
+        </div>
+    }
+    <div id="block-b_page-news" class="block block-b-page box">
+        <h2 class="box-headline">
+            Từ điển nguyên liệu </h2>
+        <div class="box-content">
+            <div class="item-list">
+                @Html.Action("IngredientDictionary", "Dictionary")
+            </div>           
+            @Html.ActionLink("Xem đầy đủ", "Index", "Dictionary", null, new { @class = "front-view-more" })
+            @Html.ActionLink("Thêm từ mới", "Create", "Dictionary", null, new { @class = "front-view-more" })
+        </div>
+    </div>
+    
+@*Liên hệ quảng cáo*@
+    <div id="block-block-7" class="block block-block box">
+        <div class="box-content">
+            <div>
+                <a href="#">
+                    <img src="@Url.Content("~/Content/images/main/lienhe.gif")"></a></div>
+        </div>
+    </div>
+    <div id="block-b_page-news" class="block block-b-page box">
+        <h2 class="box-headline">
+            Câu hỏi mới nhất</h2>
+        <div class="box-content">
+            <div class="item-list">
+                @Html.Action("NewestQuestions", "Statistics")
+            </div>
+            @Html.ActionLink("Xem thêm", "Index", "Questions", null, new { @class = "front-view-more" })
+        </div>
+    </div>
+    <div id="block-b_page-forum-hightlight-list-node" class="block block-b-page box">
+        <h2 class="box-headline">
+            Đóng góp nhiều nhất</h2>
+        <div class="box-content">
+            @Html.Action("TopContributors", "Statistics")
+        </div>
+    </div>
+    <div id="block-fbplugins-fbLikeBox" class="block block-fbplugins box">
+        <h2 class="box-headline">
+            Vua bếp trên Facebook</h2>
+        <div class="box-content">
+            <div style="margin-left: -10px;">
+                <div class="fb-like-box" data-href="http://www.facebook.com/pages/Vua-B%E1%BA%BFp/271506669620809"
+                    data-width="296" data-height="270" data-show-faces="true" data-stream="false"
+                    data-header="false">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="fb-root">
+</div>
+<script type="text/javascript">
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=417639234922859";
+        fjs.parentNode.insertBefore(js, fjs);
+    } (document, 'script', 'facebook-jssdk'));
+</script>

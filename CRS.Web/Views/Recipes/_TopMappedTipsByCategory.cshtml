@@ -1,0 +1,3 @@
+﻿@model CRS.Web.ViewModels.Recipes.RecipeDetailsViewModel
+
+@Html.Action("TopMappedTipsByCategory", "Statistics", new { recipeSmallCategoryId = Model.Categories[1].Item1 })

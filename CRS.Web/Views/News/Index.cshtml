@@ -1,0 +1,87 @@
+﻿@using CRS.Web.Models
+@model CRS.Web.ViewModels._News.ListNewsViewModel
+@using CRS.Resources
+
+@{
+    ViewBag.Title = "Tin tức";
+    ViewBag.MenuName = "News";    
+}
+
+@Html.Partial("_Message")
+@Html.ValidationSummary(true, ValidationMessages.Summary)
+@if (Model != null)
+{
+    if (Model.News.Count > 0)
+    {  
+    <div class="section-headline">
+        <div class="section-headline-content">
+            <h2>
+                Tin tức
+            </h2>
+            @Html.Partial("_NewsSort")
+        </div>
+    </div>
+    <ul class="recipe-list">
+        @Html.Partial("_NewsList", Model.News)
+        @if (Model.HasMore)
+        {
+            @Html.ActionLink("xem thêm", "Index", "News", new { sort = Model.Sort, page = Model.Page + 1 }, new { @class = "more", id = "more" })
+        }
+    </ul>
+    }
+    else
+    {
+    <div class="section-headline">
+        <div class="section-headline-content">
+            <h2>
+                Tin tức
+            </h2>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <h2 class="title">
+            Không có tin tức nào!</h2>
+    </div>
+    }
+}
+@section Script
+{
+    @if (Model != null && Model.HasMore)
+    {
+        <script type="text/javascript">
+        var isLoading = false;
+        var page = 1;
+        
+            $("#more").live('click', function (e) {
+                e.preventDefault();
+                if (isLoading)
+                    return false;
+                isLoading = true;
+                $(this).html("<img src='@Url.Content("~/Content/images/main/loading.gif")' />");
+                $.ajax( {
+                    type: "POST",
+                    url: "@Url.Action("IndexMore", "News")",
+                    dataType: "html",
+                    data: {  
+                        sort: "@Model.Sort",                  
+                        page: page + 1
+                    },
+                    success: function (data) {
+                        page++;
+                        // replace "more" button by new data
+                        $(".recipe-list .last").removeClass("last");
+                        $("#more").replaceWith(data);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert(xhr.statusText);
+                        alert(thrownError);
+                        $("#more").html("có lỗi xảy ra, bạn hãy đợi một chút và thử lại");
+                    },
+                    complete: function() {
+                        isLoading = false;
+                    }
+                });
+            });        
+        </script>
+    }
+}

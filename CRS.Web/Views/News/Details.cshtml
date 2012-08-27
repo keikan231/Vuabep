@@ -1,0 +1,108 @@
+﻿@model CRS.Web.ViewModels._News.NewsDetailsViewModel
+@using CRS.Business.Models.Entities
+@using CRS.Web.ViewModels._News
+@using CRS.Web.Models
+@using CRS.Web.Helpers
+@using CRS.Common.Helpers
+@using CRS.Resources
+@Html.ValidationSummary(true, ValidationMessages.Summary)
+@Html.Partial("_Message")
+@{
+    var title = Model.CurrentUserId == 0 ? ". Bạn phải đăng nhập để sử dụng chức năng này" : "";
+}
+@{
+    ViewBag.Title = Model.News.Title;
+    ViewBag.MenuName = "News";    
+}
+<div class="section-headline">
+    <div class="section-headline-content">
+        <h1 title="@Model.News.Title">
+            @Model.News.Title.Truncate(80)
+        </h1>
+    </div>
+</div>
+<div class="content-wrapper">
+    <div id="node-7744" class="node node-recipe node-promoted" about="#" typeof="sioc:Item foaf:Document">
+        <div id="meta-box">
+            <ul class="user-actions bor-bot action-article">
+                <li>
+                    <div class="user-picture small-avatar">
+                        <a href="@Url.UserLink(Model.News.PostedBy.Id, Model.News.PostedBy.Username)" title="Xem trang cá nhân">
+                            <img src="@Url.UserAvatarUrl(Model.News.PostedBy.AvatarUrl, CRS.Web.Models.ImageType.Thumbnail)" alt="Ảnh đại diện" height="40px" width="40px" />
+                        </a>
+                    </div>
+                    <div class="meta">
+                        @Html.UserLink(Model.News.PostedBy.Id, Model.News.PostedBy.Username, new { @class = "username" })
+                        <p class="level">
+                            @Model.News.PostedBy.Level
+                        </p>
+                    </div>
+                </li>
+                <li class="user-date-post"><span>@Model.News.Views lượt xem - @Model.News.PostedDate.AgoString()
+                </span></li>
+                <!--begin social-->
+                <li class="user-share"><a id="various" href="#inline1">Chia sẻ</a></li>
+                <div style="display: none;">
+                    <div id="inline1">
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/social-facebook-box-blue-icon.png")" border="0px" /></a>&nbsp;
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/social-google-box-blue-icon.png")" border="0px" /></a>&nbsp;
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/Tumblr-icon.png")" border="0px" /></a> &nbsp;
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/Google-Plus-13-icon.png")" border="0px" /></a>
+                    </div>
+                </div>
+                <!--end social-->
+                <li class="user-fb-like">
+                    <fb:like href="#" show_faces="false" layout="button_count" width="85" action="like"
+                        font="verdana" colorscheme="light"></fb:like>
+                </li>
+                <li class="user-fb-like">
+                    <!-- Place this tag where you want the +1 button to render. -->
+                    <div class="g-plusone" data-size="medium">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <p class="desc">
+            @Model.News.ContentText
+        </p>
+        @Html.Raw(Model.News.ContentHtml)
+        @if (Model.CurrentUserId == Model.News.PostedById || Model.CanEdit)
+        {
+            <a href="@Url.Action("Edit", "News", routeValues: new { id = @Model.News.Id })" class="edit-hyperlink">
+                Chỉnh sửa thông tin</a> 
+        }
+        <ul class="liststatiticdet">
+            @Html.Partial("_Report", new ReportModel(@Model.News.Id, title, "News"))
+        </ul>
+        <!-- All Comments -->
+        <div class="place-comments">
+            <div id="comments-container">
+                <h2 class="title">
+                    Có <span id="totalNewsComment">@Model.News.Comments</span> bình luận</h2>
+                <div class="loading">
+                    <img src="@Url.Content("~/Content/images/main/loading.gif")" />
+                </div>
+            </div>
+        </div>
+        @Html.Partial("_TopNews")
+    </div>
+</div>
+@Html.Partial("_ReportPopup")
+@Html.Partial("_UnauthorizedDialog")
+@section Script
+{
+    <script src="@Url.Content("~/Scripts/jquery-ui/jquery-ui-1.8.22.custom.min.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Scripts/jquery-ui/redmond/jquery-ui-1.8.22.custom.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript"> 
+         isAuthenticated = @Request.IsAuthenticated.ToString().ToLower();
+
+ $(document).ready(function () {
+ // Load comments
+            $("#comments-container").load("@Html.Raw(Url.Action("List", "NewsComments", new { newsId = Model.News.Id, total = Model.News.Comments }))");
+            });
+    </script>
+}

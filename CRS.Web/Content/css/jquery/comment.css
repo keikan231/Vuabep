@@ -1,0 +1,31 @@
+
+#comments {
+  margin-top: 15px;
+}
+.indented {
+  margin-left: 25px; /* LTR */
+}
+.comment-unpublished {
+  background-color: #fff4f4;
+}
+.comment-preview {
+  background-color: #ffffea;
+}
+
+fieldset textarea {
+    background-position: 10px 6px;
+    border: 1px solid #BBBBBB;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 2px 2px #CCCCCC inset, 0 1px 0 #FFFFFF;
+    color: #666666;
+    display: block;
+    float: left;
+    margin: 0 10px;
+    padding-left: 10px;
+    width: 96%;
+}
+fieldset textarea:focus {
+    border: 1px solid #77BACE;
+    box-shadow: 0 2px 2px #CCCCCC inset, 0 0 10px #ADDCE6;
+    outline: medium none;
+}

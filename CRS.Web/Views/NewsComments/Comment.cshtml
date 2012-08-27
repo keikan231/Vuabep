@@ -1,0 +1,49 @@
+﻿@model CRS.Web.ViewModels.NewsComments.ListNewsCommentViewModel
+@using CRS.Web.Models
+@{
+    Layout = null;
+}
+@if (Model.Comments != null && Model.Comments.Count > 0)
+{
+    var item = Model.Comments[0];
+    if (item != null && item.Id != 0)
+    {
+        var title = "";
+        
+    <li id="liNewsComment_@(item.Id)">
+        <div class="user-picture small-avatar">
+            <a href="@Url.UserLink(item.PostedById, item.PostedBy.Username)">
+                <img src="@Url.UserAvatar(item.PostedBy, ImageType.Thumbnail)" alt="@item.PostedBy.Username.Truncate(10)" class="small-imgavatar" width="50px" height="50px"></a>
+        </div>
+        <div class="comment-content">
+            <h3>
+                <span>
+                    @Html.UserLink(item.PostedById, item.PostedBy.Username, new { @class = "username" })
+                </span>
+                 <ul class="liststatiticdet" style="display: none;">
+                @Html.Partial("_VoteUp", new VoteModel(item.Id, title, item.UpVotes, "NewsComment", Model.CurrentUserId != item.PostedById))
+                @Html.Partial("_VoteDown", new VoteModel(item.Id, title, item.DownVotes, "NewsComment", Model.CurrentUserId != item.PostedById))
+                @if (Model.CurrentUserId != item.PostedById)
+                {
+                    @Html.Partial("_Report", new ReportModel(item.Id, title, "NewsComment"))
+                }
+                else
+                {
+                    @Html.Partial("_Delete", new DeleteModel(item.Id, item.PostedById, title, "NewsComment"))
+                }
+            </ul>
+            </h3>
+            <span class="meta"><span>@item.PostedDate.AgoString()</span> </span>
+            <div class="field field-name-comment-body field-type-text-long field-label-hidden">
+                <div class="field-items">
+                    <div class="field-item even" property="content:encoded">
+                        <p>
+                            @item.ContentText
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+    }
+}

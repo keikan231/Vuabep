@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountIsBanned" xml:space="preserve">
+    <value>Tài khoản của bạn đang bị cấm hoạt động.</value>
+  </data>
+  <data name="AccountIsLocked" xml:space="preserve">
+    <value>Bạn đã thử đăng nhập quá số lần cho phép. Tài khoản của bạn sẽ bị khóa trong {0} phút.</value>
+  </data>
+  <data name="ApproveRecipeSuccess" xml:space="preserve">
+    <value>Recipe has been approved successfully.</value>
+  </data>
+  <data name="ApproveUpdatedWordSuccess" xml:space="preserve">
+    <value>Word has been updated successfully.</value>
+  </data>
+  <data name="ApproveWordSuccess" xml:space="preserve">
+    <value>Word has been approved successfully.</value>
+  </data>
+  <data name="CannotChangeAdminInfo" xml:space="preserve">
+    <value>Thông tin admin không thể thay đổi.</value>
+  </data>
+  <data name="CannotDeleteAdminInfo" xml:space="preserve">
+    <value>Tài khoản admin không thể bị xóa.</value>
+  </data>
+  <data name="CategoryNotExisted" xml:space="preserve">
+    <value>Chuyên mục không tồn tại hoặc bị xóa.</value>
+  </data>
+  <data name="ContentIsEmpty" xml:space="preserve">
+    <value>Nội dung không thể bỏ trống.</value>
+  </data>
+  <data name="DeleteAnswer_NoPermission" xml:space="preserve">
+    <value>Bạn không có quyền xóa câu trả lời của người khác.</value>
+  </data>
+  <data name="DeleteComment_NoPermission" xml:space="preserve">
+    <value>Bạn không có quyền xóa bình luận của người khác.</value>
+  </data>
+  <data name="DeleteNewsSuccess" xml:space="preserve">
+    <value>News has been deleted successfully.</value>
+  </data>
+  <data name="DeleteRecipeSuccess" xml:space="preserve">
+    <value>Recipe has been deleted successfully.</value>
+  </data>
+  <data name="DeleteRoleSuccess" xml:space="preserve">
+    <value>Role has been deleted successfully.</value>
+  </data>
+  <data name="DeleteTipCategorySuccess" xml:space="preserve">
+    <value>Xóa chuyên mục thành công.</value>
+  </data>
+  <data name="DeleteTipSuccess" xml:space="preserve">
+    <value>Tip has been deleted successfully.</value>
+  </data>
+  <data name="DeleteUpdatedWordSuccess" xml:space="preserve">
+    <value>Updated word has been deleted successfully.</value>
+  </data>
+  <data name="DeleteUserSuccess" xml:space="preserve">
+    <value>User has been deleted successfully.</value>
+  </data>
+  <data name="DeleteWordSuccess" xml:space="preserve">
+    <value>Word has been deleted successfully.</value>
+  </data>
+  <data name="Dictionary_DublicateName" xml:space="preserve">
+    <value>Đã có tên nguyên liệu này. Bạn hãy kiểm tra lại trước khi muốn thêm tên nguyên liệu mới.</value>
+  </data>
+  <data name="EditNews_NotAllowed" xml:space="preserve">
+    <value>Bạn không được phép sửa bài này.</value>
+  </data>
+  <data name="EditQuestion_NotAllowed" xml:space="preserve">
+    <value>Bạn không được phép sửa câu hỏi này.</value>
+  </data>
+  <data name="EditRecipe_NotAllowed" xml:space="preserve">
+    <value>Bạn không được phép sửa công thức này.</value>
+  </data>
+  <data name="EditTip_NotAllowed" xml:space="preserve">
+    <value>Bạn không được phép sửa bài này.</value>
+  </data>
+  <data name="EmailIsNotExisted" xml:space="preserve">
+    <value>Địa chỉ email không tồn tại.</value>
+  </data>
+  <data name="EmailIsUsed" xml:space="preserve">
+    <value>Địa chỉ email đã được sử dụng.</value>
+  </data>
+  <data name="ExceedMaxContentLength" xml:space="preserve">
+    <value>Dung lượng ảnh vượt quá mức cho phép.</value>
+  </data>
+  <data name="GeneralError" xml:space="preserve">
+    <value>Có lỗi xảy ra. Thực hiện tác vụ không thành công.</value>
+  </data>
+  <data name="GetCategory_NotFound" xml:space="preserve">
+    <value>Category not found.</value>
+  </data>
+  <data name="GetRole_NotFound" xml:space="preserve">
+    <value>Role not found.</value>
+  </data>
+  <data name="GetTagCategory_NotFound" xml:space="preserve">
+    <value>Nội dung không tồn tại.</value>
+  </data>
+  <data name="GetUser_NotFound" xml:space="preserve">
+    <value>Tài khoản không tồn tại.</value>
+  </data>
+  <data name="ImageExtensionNotAllowed" xml:space="preserve">
+    <value>Chỉ hỗ trợ định dạng ảnh JPG và PNG</value>
+  </data>
+  <data name="ImageTooSmall" xml:space="preserve">
+    <value>Kích thước ảnh quá nhỏ.</value>
+  </data>
+  <data name="IncorrectLoginInfo" xml:space="preserve">
+    <value>Tên đăng nhập hoặc mật khẩu không chính xác.</value>
+  </data>
+  <data name="IncorrectOldPassword" xml:space="preserve">
+    <value>Mật khẩu cũ không đúng.</value>
+  </data>
+  <data name="InsertCategory_DuplicateName" xml:space="preserve">
+    <value>There is already a category with the same name.</value>
+  </data>
+  <data name="InsertNewsSuccess" xml:space="preserve">
+    <value>Tạo tin tức mới thành công.</value>
+  </data>
+  <data name="InsertRecipeCategorySuccess" xml:space="preserve">
+    <value>Recipe Category has been inserted successfully.</value>
+  </data>
+  <data name="InsertRecipeSmallCategorySuccess" xml:space="preserve">
+    <value>Small Recipe Category has been inserted successfully.</value>
+  </data>
+  <data name="InsertRecipeSuccess" xml:space="preserve">
+    <value>Tạo công thức nấu ăn thành công.</value>
+  </data>
+  <data name="InsertRoleSuccess" xml:space="preserve">
+    <value>Role has been inserted successfully.</value>
+  </data>
+  <data name="InsertRole_DuplicateName" xml:space="preserve">
+    <value>There is already a role with the same name.</value>
+  </data>
+  <data name="InsertTagCategory_DuplicateName" xml:space="preserve">
+    <value>There is already a tag category with the same name.</value>
+  </data>
+  <data name="InsertTipCategorySuccess" xml:space="preserve">
+    <value>Tạo chuyên mục mới thành công.</value>
+  </data>
+  <data name="InsertTipCategory_DuplicateName" xml:space="preserve">
+    <value>Chuyên mục này đã tồn tại.</value>
+  </data>
+  <data name="InsertTipSuccess" xml:space="preserve">
+    <value>Tạo mẹo vặt mới thành công.</value>
+  </data>
+  <data name="InsertWordSuccess" xml:space="preserve">
+    <value>Thêm từ mới thành công. Ban quản trị sẽ kiểm tra độ chính xác trong thời gian sớm nhất.</value>
+  </data>
+  <data name="LoginFail" xml:space="preserve">
+    <value>Đăng nhập không thành công.</value>
+  </data>
+  <data name="NewsNotExisted" xml:space="preserve">
+    <value>Tin tức bạn tìm kiếm không tồn tại.</value>
+  </data>
+  <data name="QuestionNotExisted" xml:space="preserve">
+    <value>Câu hỏi không tồn tại hoặc đã bị xóa.</value>
+  </data>
+  <data name="RecipeCategoriesNotExisted" xml:space="preserve">
+    <value>Công thức nấu ăn không tồn tại chuyên mục nào.</value>
+  </data>
+  <data name="RecipeNotExisted" xml:space="preserve">
+    <value>Công thức nấu ăn không tồn tại hoặc bị xóa.</value>
+  </data>
+  <data name="TipNotExisted" xml:space="preserve">
+    <value>Mẹo vặt không tồn tại hoặc đã bị xóa.</value>
+  </data>
+  <data name="UnapproveWordSuccess" xml:space="preserve">
+    <value>Word has been unapproved successfully.</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>Bạn không có quyền truy cập trang này.</value>
+  </data>
+  <data name="UpdateInformationFail" xml:space="preserve">
+    <value>Cập nhật thông tin không thành công.</value>
+  </data>
+  <data name="UpdatePasswordFail" xml:space="preserve">
+    <value>Thay đổi mật khẩu không thành công.</value>
+  </data>
+  <data name="UpdatePasswordSuccess" xml:space="preserve">
+    <value>Thay đổi mật khẩu thành công.</value>
+  </data>
+  <data name="UpdateRoleSuccess" xml:space="preserve">
+    <value>Role has been updated successfully.</value>
+  </data>
+  <data name="UpdateRole_DuplicateName" xml:space="preserve">
+    <value>There is already a role with the same name.</value>
+  </data>
+  <data name="UpdateTipCategorySuccess" xml:space="preserve">
+    <value>Cập nhật chuyên mục thành công.</value>
+  </data>
+  <data name="UpdateUserProfileSuccess" xml:space="preserve">
+    <value>Thông tin cá nhân đã được cập nhật.</value>
+  </data>
+  <data name="UpdateUserSuccess" xml:space="preserve">
+    <value>User has been updated successfully.</value>
+  </data>
+  <data name="UpdateWordSuccess" xml:space="preserve">
+    <value>Sửa từ thành công. Ban quản trị sẽ kiểm tra độ chính xác trong thời gian sớm nhất.</value>
+  </data>
+  <data name="UsernameIsUsed" xml:space="preserve">
+    <value>Tên đăng nhập đã tồn tại. </value>
+  </data>
+  <data name="VoteAnswer_SeftVoting" xml:space="preserve">
+    <value>Bạn không thể thích câu trả lời của chính mình.</value>
+  </data>
+  <data name="VoteComment_SeftVoting" xml:space="preserve">
+    <value>Bạn không thể thích bình luận của chính mình.</value>
+  </data>
+  <data name="VoteContent_SeftVoting" xml:space="preserve">
+    <value>Bạn không thể thích bài viết của chính mình.</value>
+  </data>
+  <data name="WordNotExisted" xml:space="preserve">
+    <value>Từ không tồn tại hoặc đã bị xóa.</value>
+  </data>
+</root>

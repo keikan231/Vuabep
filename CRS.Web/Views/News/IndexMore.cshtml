@@ -1,0 +1,11 @@
+﻿@model CRS.Web.ViewModels._News.ListNewsViewModel
+@{
+    Layout = null;
+}
+@{
+    @Html.Partial("_NewsList", Model.News)
+    if (Model.HasMore)
+    {
+    @Html.ActionLink("Xem thêm", "Index", "News", new {sort = Model.Sort, page = Model.Page + 1 }, new { @class = "more", id = "more" })
+    }
+}

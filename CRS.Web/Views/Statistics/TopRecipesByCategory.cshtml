@@ -1,0 +1,17 @@
+﻿@{
+    Layout = null;
+}
+@model IList<Recipe>
+@using CRS.Business.Models.Entities;
+@using CRS.Web.Models;
+<div class="related-link">
+    <ul class="other-article-list">
+        @for (var i = 0; i < Model.Count; i++)
+        {
+            var item = Model[i];
+            <li title="@item.Title">@Html.RecipeImageActionLink("Recipes", @Url.ShowImage(item.ImageUrl, ImageType.Thumbnail), item.Title, item.Id, item.Title, item.TitleUrl, new { @height = "100px", @width = "100px" })
+                @Html.RecipeLink(item.Id, item.Title.TruncateWord(13), item.TitleUrl)
+                <span>@item.Views lượt xem</span> </li>
+        }
+    </ul>
+</div>

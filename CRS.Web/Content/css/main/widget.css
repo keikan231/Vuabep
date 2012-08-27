@@ -1,0 +1,11 @@
+/* Form widget's stylesheet */
+form table.field-multiple-table td.field-multiple-drag { display: none; }
+form table.field-multiple-table thead.tableheader-processed {  }
+form table.field-multiple-table thead.tableheader-processed tr { padding: 0; margin: 0; }
+form table.field-multiple-table thead.tableheader-processed tr th { display: none; border: 0; padding: 0; margin: 0; }
+form table.field-multiple-table thead.tableheader-processed tr th.field-label { display: block; }
+tr.even, tr.odd { background: none; border: 0; }
+form table.field-multiple-table thead.tableheader-processed tr th.field-label label { padding-bottom: 10px; margin: 0; }
+form table.field-multiple-table tbody tr.draggable td input { margin-right: 10px; margin-bottom: 10px; }
+div.wysiwyg { margin-bottom: 10px; }
+/* ../images/sprite.png */

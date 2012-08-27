@@ -1,0 +1,9 @@
+﻿@model CRS.Web.ViewModels.TipComments.ListTipCommentViewModel           
+@{
+    Layout = null;
+}
+@Html.Partial("_CommentList", Model)
+@if (Model.HasMore)
+{ 
+    <a class="more" id="more">xem thêm</a>
+}

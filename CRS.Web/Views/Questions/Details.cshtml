@@ -1,0 +1,190 @@
+﻿@model CRS.Web.ViewModels.Questions.ViewQuestionDetailsViewModel
+@using CRS.Business.Models.Entities
+@using CRS.Web.ViewModels.Questions
+@using CRS.Web.Models
+@using CRS.Resources
+@using CRS.Common.Helpers
+@using CRS.Web.Helpers
+@Html.ValidationSummary(true, ValidationMessages.Summary)
+@Html.Partial("_Message")
+@{
+    var title = Model.CurrentUserId == 0 ? ". Bạn phải đăng nhập để sử dụng chức năng này" : "";
+}
+@{
+    ViewBag.Title = Model.Question.Title;
+    ViewBag.MenuName = "Questions";
+    Layout = "~/Views/Shared/_LayoutQuestion.cshtml"; 
+}
+<div class="section-headline">
+    <div class="section-headline-content">
+        <h1 title="@Model.Question.Title">
+            @Model.Question.Title.Truncate(80)
+        </h1>
+    </div>
+</div>
+<div class="content-wrapper">
+    <div id="node-7744" class="node node-recipe node-promoted" about="#" typeof="sioc:Item foaf:Document">
+        <div id="meta-box">
+            <ul class="user-actions bor-bot action-article">
+                <li>
+                    <div class="user-picture small-avatar">
+                        <a href="@Url.QuestionLink(Model.Question.PostedBy.Id, Model.Question.PostedBy.Username)" title="Xem trang cá nhân">
+                            <img src="@Url.UserAvatarUrl(Model.Question.PostedBy.AvatarUrl, CRS.Web.Models.ImageType.Thumbnail)" alt="Ảnh đại diện" height="40px" width="40px" />
+                        </a>
+                    </div>
+                    <div class="meta">
+                        @Html.UserLink(Model.Question.PostedBy.Id, Model.Question.PostedBy.Username, new { @class = "username" })
+                        <p class="level">
+                            @Model.Question.PostedBy.Level
+                        </p>
+                    </div>
+                </li>
+                <li class="user-date-post"><span>@Model.Question.Views lượt xem - @Model.Question.PostedDate.AgoString()
+                </span></li>
+                <!--begin social-->
+                <li class="user-share"><a id="various" href="#inline1">Chia sẻ</a></li>
+                <div style="display: none;">
+                    <div id="inline1">
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/social-facebook-box-blue-icon.png")" border="0px" /></a>&nbsp;
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/social-google-box-blue-icon.png")" border="0px" /></a>&nbsp;
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/Tumblr-icon.png")" border="0px" /></a> &nbsp;
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/images/main/Google-Plus-13-icon.png")" border="0px" /></a>
+                    </div>
+                </div>
+                <!--end social-->
+                <li class="user-fb-like">
+                    <fb:like href="#" show_faces="false" layout="button_count" width="85" action="like"
+                        font="verdana" colorscheme="light"></fb:like>
+                </li>
+                <li class="user-fb-like">
+                    <!-- Place this tag where you want the +1 button to render. -->
+                    <div class="g-plusone" data-size="medium">
+                </li>
+            </ul>
+        </div>
+        <p class="desc">
+            @Model.Question.ContentText
+        </p>
+        @if (Model.CurrentUserId == Model.Question.PostedById || Model.CanEdit)
+        {
+            <a href="@Url.Action("Edit", "Questions", routeValues: new { id = @Model.Question.Id })" class="edit-hyperlink">
+                Chỉnh sửa thông tin</a> 
+        }
+        <p>
+            <ul class="liststatiticdet">
+                @Html.Partial("_Report", new ReportModel(@Model.Question.Id, title, "Question"))
+            </ul>
+        </p>
+        @if (Model.HighlightAnswers.Count > 0)
+        { 
+            <h2 class="title">
+                Trả lời được yêu thích</h2>
+            <div id="comment-section" class="comment-wrapper">
+                <div id="comments" class="clearfix">
+                    <ul id="comment-list">
+                        @foreach (var item in Model.HighlightAnswers)
+                        { 
+                            <li id="liNewsComment_@(item.Id)">
+                                <div class="user-picture small-avatar">
+                                    <a href="@Url.UserLink(item.PostedById, item.PostedBy.Username)">
+                                        <img src="@Url.UserAvatar(item.PostedBy, ImageType.Thumbnail)" alt="@item.PostedBy.Username.Truncate(10)" class="small-imgavatar" width="50px" height="50px"></a>
+                                </div>
+                                <div class="comment-content">
+                                    <h3>
+                                        <span>
+                                            @Html.UserLink(item.PostedById, item.PostedBy.Username, new { @class = "username" })
+                                        </span>
+                                        <ul class="liststatiticdet" style="display: none;">
+                                            @Html.Partial("_VoteUp", new VoteModel(item.Id, title, item.UpVotes, "NewsComment", Model.CurrentUserId != item.PostedById))
+                                            @Html.Partial("_VoteDown", new VoteModel(item.Id, title, item.DownVotes, "NewsComment", Model.CurrentUserId != item.PostedById))
+                                            @if (Model.CurrentUserId != item.PostedById)
+                                            {
+                                                @Html.Partial("_Report", new ReportModel(item.Id, title, "NewsComment"))
+                                            }
+                                            else
+                                            {
+                                                @Html.Partial("_Delete", new DeleteModel(item.Id, item.PostedById, title, "NewsComment"))
+                                            }
+                                        </ul>
+                                    </h3>
+                                    <span class="meta"><span>@item.PostedDate.AgoString()</span> </span>
+                                    <div class="field field-name-comment-body field-type-text-long field-label-hidden">
+                                        <div class="field-items">
+                                            <div class="field-item even" property="content:encoded">
+                                                <p>
+                                                    @item.ContentText
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>                 
+        }
+        <h2 class="title" id="totalanswer">
+            Có <span id="totalAnswer">@(Model.Total)</span> câu trả lời
+        </h2>
+        @Html.Partial("_AnswerInputForm", new Answer { QuestionId = Model.Question.Id })
+        <div id="comment-section" class="comment-wrapper">
+            <div id="comments" class="clearfix">
+                <ul id="comment-list" class="comment-list">
+                    @Html.Partial("_AnswerList", new ListAnswerViewModel() { Answers = new List<Answer>(Model.Answers), CurrentUserId = Model.CurrentUserId })
+                    @if (Model.HasMore)
+                    {             
+                        <a class="more" id="more">xem thêm</a>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("_ReportPopup")
+@Html.Partial("_UnauthorizedDialog")
+@section Script
+{
+    <script src="@Url.Content("~/Scripts/jquery-ui/jquery-ui-1.8.22.custom.min.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Scripts/jquery-ui/redmond/jquery-ui-1.8.22.custom.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">        
+        var reportId = 0;        
+        isAuthenticated = @Request.IsAuthenticated.ToString().ToLower();
+        var isLoading = false;
+        var page = 1;
+        $("#more").live('click', function (e) {
+                e.preventDefault();
+
+                if (isLoading)
+                    return false;
+                isLoading = true;
+                $(this).html("<img src='@Url.Content("~/Content/images/main/loading.gif")' />");
+                $.ajax( {
+                    type: "POST",
+                    url: "@Url.Action("DetailsMore", "Questions")",
+                    dataType: "html",
+                    data: {
+                        id: @Model.Question.Id,                    
+                        page: page + 1,
+                    },
+                    success: function (data) {
+                        page++;
+                        // replace "more" button by new data
+                        $("#more").replaceWith(data);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert(xhr.statusText);
+                        alert(thrownError);
+                        $("#more").html("có lỗi xảy ra, bạn hãy đợi một chút và thử lại");
+                    },
+                    complete: function() {
+                        isLoading = false;
+                    }
+                });
+            });  
+    </script>
+}

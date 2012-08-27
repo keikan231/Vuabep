@@ -1,0 +1,14 @@
+﻿@model System.DateTime ?
+@Html.TextBox("", (Model.HasValue ? Model.Value.ToString("dd/MM/yyyy") : string.Empty), new { @id = "pickDate", @style = "width:100px" })
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#pickDate').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1920:2012'
+        }).datepicker("option", $.datepicker.regional['vi']);
+    });
+</script>

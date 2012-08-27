@@ -1,0 +1,30 @@
+﻿@model CRS.Web.Areas.Admin.ViewModels.ManageCategories.InsertRecipeCategoryViewModel
+@Html.ValidationSummary(true, ValidationMessages.Summary)
+<div class="content-box">
+    <div class="content-box-header">
+        <h3>
+            Recipe Category information</h3>
+    </div>
+    <div class="content-box-content">
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(m => m.RecipeCategory.Id)
+            <div class="input">
+                <p class="required">
+                    @Html.LabelFor(m => m.RecipeCategory.Name)
+                    @Html.TextBoxFor(m => m.RecipeCategory.Name, new { @class = "text-input small-input" })
+                    @Html.ValidationMessageFor(m => m.RecipeCategory.Name)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.RecipeCategory.Description)
+                    @Html.TextBoxFor(m => m.RecipeCategory.Description, new { @class = "text-input small-input" })
+                    @Html.ValidationMessageFor(m => m.RecipeCategory.Description)
+                </p>
+                <p class="buttons">
+                    @Html.Partial("_SaveButton")
+                    @Html.Partial("_CancelButton", new CRS.Web.Models.ActionInfo("Cancel", "ManageRecipeCategories"))
+                </p>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,28 @@
+﻿@{
+    Layout = null;
+}
+@model IList<Tip>
+@using CRS.Business.Models.Entities;
+@using CRS.Web.Models;
+@if (Model != null)
+{
+    if (Model.Count > 0)
+    {
+    <div class="boxnav">
+        <h2 class="title">
+            Mẹo vặt liên quan</h2>
+        <div class="boxnavcontent">
+            <div id="topviews">
+                    <ul class="menunav">
+                        @for (var i = 0; i < Model.Count; i++)
+                        {
+                            var item = Model[i];
+                            <li class="@(i == Model.Count - 1 ? "last" : "")" title="@item.Title">@Html.TipLink(item.Id, item.Title.Truncate(100), item.TitleUrl)
+                                <span class="datetime">(@item.PostedDate.ShortDate()) </span></li>
+                        }
+                    </ul>
+            </div>
+        </div>
+    </div>
+    }
+}

@@ -1,0 +1,9 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+#divAdBalloonAds{ overflow:hidden; bottom:0px !important; display:none; width:265px;}
+#divAdBalloonAdsT{ overflow:hidden; bottom:250px !important; display:none; width:265px;}
+#divAdBalloonAdsB{ overflow:hidden; bottom:0px !important; display:none; width:265px;}
+
+	

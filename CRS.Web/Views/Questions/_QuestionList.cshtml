@@ -1,0 +1,39 @@
+﻿@model IList<CRS.Business.Models.Entities.Question>
+@using CRS.Web.Models
+@using CRS.Common.Helpers
+@using CRS.Web.Helpers
+<ul class="recipe-list">
+    @foreach (var item in Model)
+    { 
+        <li class="@(Model.Count - 1 == Model.IndexOf(item) ? "last" : "")">
+            <div class="answericon">
+                <a href="@Url.QuestionLink(item.Id, item.TitleUrl)"><span class="count">@(item.AnswerTimes > 1000 ? ">1k" : item.AnswerTimes.ToString())</span>
+                    <span>Trả lời</span> </a>
+            </div>
+            <div class="recipe-summary">
+                <h2 property="dc:title" datatype="">
+                    @Html.QuestionLink(item.Id, item.Title, item.TitleUrl)</h2>
+                <span class="meta"><span>@Html.UserLink(item.PostedBy.Id, item.PostedBy.Username, new { @class = "username" })
+                </span>- @item.Views lượt xem - @item.PostedDate.AgoString() </span>
+
+                <ul class="user-actions">
+                    <!--begin social-->
+                    <li class="user-share"><a id="various" href="#inline1">Chia sẻ</a></li>
+                    <div style="display: none;">
+                        <div id="inline1">
+                            <a href="#">
+                                <img src="@Url.Content("~/Content/images/main/social-facebook-box-blue-icon.png")" border="0px" /></a>&nbsp;
+                            <a href="#">
+                                <img src="@Url.Content("~/Content/images/main/social-google-box-blue-icon.png")" border="0px" /></a>&nbsp;
+                            <a href="#">
+                                <img src="@Url.Content("~/Content/images/main/Tumblr-icon.png")" border="0px" /></a> &nbsp;
+                            <a href="#">
+                                <img src="@Url.Content("~/Content/images/main/Google-Plus-13-icon.png")" border="0px" /></a>
+                        </div>
+                    </div>
+                    <!--end social-->
+                </ul>
+            </div>
+        </li>        
+    }
+</ul>

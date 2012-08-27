@@ -1,0 +1,9 @@
+﻿@model CRS.Web.Models.ActionInfo
+<form action="@Url.Action(Model.Action, Model.Controller)" class="t-grid-actions" method="post">
+<div>
+    <input name="id" type="hidden" value="@Model.Id" />
+    <button class="t-button t-grid-delete t-button-icontext" type="submit">
+        <span class="t-icon t-delete"></span>@Model.Text
+    </button>
+</div>
+</form>

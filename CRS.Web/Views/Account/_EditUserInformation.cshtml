@@ -1,0 +1,98 @@
+﻿@model CRS.Web.ViewModels.Account.UpdateUserProfileViewModel
+@using CRS.Web.Framework.Security;
+@using CRS.Common;
+<script src="@Url.Content("~/Scripts/jquery-ui/jquery-1.7.2.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui/jquery-ui-1.8.22.custom.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.ui.datepicker-vi.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Scripts/jquery-ui/redmond/jquery-ui-1.8.22.custom.css")" rel="stylesheet" type="text/css" />
+@Html.Partial("_Message")
+<div class="profile-padd user-home">
+    <fieldset id="edit-personal-information" class="form-wrapper">
+        <div class="fieldset-wrapper">
+            @using (Html.BeginForm("Profile", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @id = "user-profile-form" }))
+            {
+                <div class="form-item form-type-date form-item-profile-ngay-sinh">
+                    <label>
+                        Ngày sinh</label>
+                    <div class="form-item form-type-select form-item-profile-ngay-sinh">
+                        @Html.EditorFor(model => model.User.Birthday)
+                        @Html.ValidationMessageFor(model => model.User.Birthday)
+                    </div>
+                </div>
+                <div class="form-item form-type-select form-item-profile-gioi-tinh">
+                    <label>
+                        Giới tính
+                    </label>
+                    @{
+                Dictionary<string, string> sex = new Dictionary<string, string>();
+                sex.Add(" - Chọn giới tính - ", "");
+                sex.Add("Nam", "Nam");
+                sex.Add("Nữ", "Nữ");
+                SelectList listSex = new SelectList(sex, "value", "key", "");
+                    }
+                    <div class="uniform">
+                        @Html.DropDownListFor(m => m.User.Sex, listSex, new { @style = "width:300px" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.User.Sex)
+                </div>
+                <div class="form-item form-type-select form-item-profile-dang-o-tai">
+                    <label>
+                        Đang ở tại
+                    </label>
+                    @Html.DropDownListFor(m => m.User.LocationId, new SelectList(Model.Locations, "Id", "Name"), " - Chọn tỉnh/thành phố - ", new { @style = "width:300px" })
+                    @Html.ValidationMessageFor(m => m.User.LocationId)
+                </div>
+                <div class="form-item form-type-select form-item-profile-kha-nang-nau-nuong">
+                    <label>
+                        Khả năng nấu nướng
+                    </label>
+                    @{
+                Dictionary<string, string> exp = new Dictionary<string, string>();
+                exp.Add(" - Chọn khả năng - ", "");
+                exp.Add("Không biết nấu ăn", "Không biết nấu ăn");
+                exp.Add("Biết nấu ăn đôi chút", "Biết nấu ăn đôi chút");
+                exp.Add("Nấu ăn giỏi", "Nấu ăn giỏi");
+                exp.Add("Chuyên gia nấu ăn", "Chuyên gia nấu ăn");
+                SelectList listExp = new SelectList(exp, "value", "key", "");
+                    }
+                    @Html.DropDownListFor(m => m.User.CookingExp, listExp, new { @style = "width:300px" })
+                    @Html.ValidationMessageFor(model => model.User.CookingExp)
+                </div>
+                <div class="form-item form-type-select form-item-profile-dia-chi-mang-xa-hoi">
+                    <label>
+                        Địa chỉ mạng xã hội thường dùng
+                    </label>
+                    @Html.TextBoxFor(model => model.User.SocialNetworkUrl, new { @style = "width:300px" })
+                    @Html.ValidationMessageFor(model => model.User.SocialNetworkUrl)
+                </div>
+                <div class="form-textarea-wrapper resizable textarea-processed resizable-textarea">
+                    <label>
+                        Sở thích của bạn
+                    </label>
+                    @Html.TextAreaFor(m => m.User.Hobbies, new { @rows = "5", @cols = "40" })
+                    @Html.ValidationMessageFor(m => m.User.Hobbies)
+                </div>
+                <fieldset id="edit-picture" class="form-wrapper">
+                    <div class="fieldset-wrapper">
+                        <label>
+                            Hình đại diện
+                        </label>
+                        <div class="user-picture small-avatar">
+                            <img src="@Url.UserAvatar(Model.User, CRS.Web.Models.ImageType.Big)" alt="Ảnh đại diện" class="big-imgavatar" height="128px" width="128px" />
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="form-item form-type-file form-item-files-picture-upload">
+                    <input id="edit-picture-upload" class="form-file uniform-processed" type="File" size="48"
+                        name="File" />
+                    <div class="description">
+                        Dung lượng ảnh phải bé hơn <strong>@AppConfigs.UploadImageMaxSize MB</strong> .
+                        <br>
+                        Định dạng ảnh hỗ trợ: <strong>PNG JPG JPEG</strong> .
+                    </div>
+                </div>
+                <input type="submit" value="Sửa đổi" class="form-submit" />
+            }
+        </div>
+    </fieldset>
+</div>

@@ -1,0 +1,22 @@
+﻿@model CRS.Web.Models.VoteModel
+@{ 
+    var entity = "bài viết";
+    switch (Model.Entity)
+    {
+        case "Question":
+            entity = "câu hỏi";
+            break;
+        case "Answer":
+            entity = "câu trả lời";
+            break;
+        case "TipComment":
+            entity = "bình luận";
+            break;
+        case "NewsComment":
+            entity = "bình luận";
+            break;
+    }
+}
+<li><a class="downvote-link@(Model.CanVote ? "" : "readonly")" data-id="down_@(Model.Entity)_@(Model.Id)" title="@(Model.CanVote ? "Không thích " + entity + " này" + Model.Title : "Bạn không thể tự không thích " + entity + " của chính mình")">
+    Vote down</a></li>
+<li class="votedowncount" data-id="downcount_@(Model.Entity)_@(Model.Id)" title="Số người không thích">@Model.Votes</li>
