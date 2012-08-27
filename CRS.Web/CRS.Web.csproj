@@ -48,6 +48,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Content\plugins\ckfinder\bin\Debug\CKFinder.dll</HintPath>
     </Reference>
+    <Reference Include="CRS.Business, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CRS.Business\bin\CRS.Business.dll</HintPath>
+    </Reference>
     <Reference Include="DataAnnotationsExtensions">
       <HintPath>D:\Study materials\Captone projects\Place sharing network - Vo Thanh Quang\Implementation\Source Code\Psn.Common\bin\Debug\DataAnnotationsExtensions.dll</HintPath>
     </Reference>
@@ -2467,10 +2471,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CRS.Business\CRS.Business.csproj">
-      <Project>{282B460F-95E5-4173-818E-85A75B0816D7}</Project>
-      <Name>CRS.Business</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CRS.Common\CRS.Common.csproj">
       <Project>{423E230E-769C-4219-BFA2-BF9ED1483251}</Project>
       <Name>CRS.Common</Name>
