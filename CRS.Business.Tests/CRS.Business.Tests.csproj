@@ -55,15 +55,15 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CRS.Business\AppHarbor.Business.csproj">
+    <ProjectReference Include="..\CRS.Business\CRS.Business.csproj">
       <Project>{282B460F-95E5-4173-818E-85A75B0816D7}</Project>
       <Name>AppHarbor.Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CRS.Common\AppHarbor.Common.csproj">
+    <ProjectReference Include="..\CRS.Common\CRS.Common.csproj">
       <Project>{423E230E-769C-4219-BFA2-BF9ED1483251}</Project>
       <Name>AppHarbor.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CRS.Resources\AppHarbor.Resources.csproj">
+    <ProjectReference Include="..\CRS.Resources\CRS.Resources.csproj">
       <Project>{C973DA0D-06FD-4F80-B29F-80E0582A1DDC}</Project>
       <Name>AppHarbor.Resources</Name>
     </ProjectReference>
