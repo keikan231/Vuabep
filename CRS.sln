@@ -1,21 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRS.Common", "CRS.Common\CRS.Common.csproj", "{423E230E-769C-4219-BFA2-BF9ED1483251}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRS.Common.Tests", "CRS.Common.Tests\CRS.Common.Tests.csproj", "{B2A21CDE-2348-42BD-902C-C316EE365384}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRS.Business", "CRS.Business\CRS.Business.csproj", "{282B460F-95E5-4173-818E-85A75B0816D7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRS.Business.Tests", "CRS.Business.Tests\CRS.Business.Tests.csproj", "{28C3A749-42BE-41A8-A570-1E580E5BCAC6}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{15B983D2-548A-454F-ACB3-723D59EBEC01}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRS.Resources", "CRS.Resources\CRS.Resources.csproj", "{C973DA0D-06FD-4F80-B29F-80E0582A1DDC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRS.Web", "CRS.Web\CRS.Web.csproj", "{2D6FC19C-7B62-4275-9DB6-F45BE0F46374}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRS.Web.Tests", "CRS.Web.Tests\CRS.Web.Tests.csproj", "{E62443A4-B0D9-4E5E-9885-1DD4E8E516D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
