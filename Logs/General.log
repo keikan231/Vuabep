@@ -14794,6 +14794,7 @@ Severity: Information
 
 Message: Application shuts down!
 ----------------------------------------
+<<<<<<< HEAD
 ----------------------------------------
 Timestamp: 27/08/2012 12:12:03 CH
 
@@ -14892,3 +14893,5 @@ Severity: Information
 
 Message: Application shuts down!
 ----------------------------------------
+=======
+>>>>>>> Initial again
